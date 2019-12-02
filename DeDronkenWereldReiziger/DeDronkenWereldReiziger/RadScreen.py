@@ -1,4 +1,4 @@
-
+#Reindert
 rotation = 2.0
 rotating=False
 speed=random(0.1,1.9)
