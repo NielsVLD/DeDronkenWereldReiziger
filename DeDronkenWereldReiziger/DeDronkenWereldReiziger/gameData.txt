@@ -1,0 +1,1 @@
+{"amountOfPlayers": "2", "drank": null, "users": []}
