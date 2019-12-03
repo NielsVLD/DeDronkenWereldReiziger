@@ -1,6 +1,5 @@
 # Nelus
 ingevuldAntwoord =False
-touched = False
 def setup():
     size(1000,800)
     loadImage('')
