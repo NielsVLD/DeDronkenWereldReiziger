@@ -21,17 +21,20 @@ mainScreenData['i'] = 1
 mainScreenData['checkImage'] = None
 
 
+
 # this data will be used through the whole game
 gameData = {}
 gameData['drank'] = None
 gameData['amountOfPlayers'] = 0
 gameData['users'] = []
+gameData['colors'] = []
 
 checked = None
 notChecked = None
 
 blinkTime = None
 blinkOn = None
+
 
 
 def setup():
@@ -47,6 +50,19 @@ def setup():
     
     blinkTime = millis()
     blinkOn = True
+    
+    
+    p1C = color(255, 0, 0)
+    p2C = color(0, 255, 0)
+    p3C = color(0, 0, 255)
+    p4C = color(255, 0, 255)
+    
+    gameData['colors'].append(p1C)
+    gameData['colors'].append(p2C)
+    gameData['colors'].append(p3C)
+    gameData['colors'].append(p4C)
+    
+    
             
 def draw():
     
@@ -119,14 +135,14 @@ def draw():
         fill(255)
         text(mainScreenData['userName'], width/2, 230)
         
-        
     if(mainScreenData['thirdScreen']):   
-        functions.clearPage()     
+        functions.clearPage() 
+
+        fill(gameData['colors'][0])
         text(str(gameData['users'][0]), 200, 100)
-        text(str(gameData['users'][1]), 200, 140)
-        
-        fill(200)
-            
+        fill(gameData['colors'][1])
+        text(str(gameData['users'][1]), 200, 150)
+                
 def keyPressed():
     global gameData
     
@@ -164,17 +180,21 @@ def mouseClicked():
         mainScreenData['checkImage'] = checked
     
 def amountOfUsers():
-    if(key == '2' or key == '3' or key == '4'):
-        gameData['amountOfPlayers'] = key
-        mainScreenData['showContinueText'] = True
-        
-             # write the json data to a txt file
-        with open('gameData.txt', 'w') as outfile:
-            json.dump(gameData, outfile)
-    else:
-        mainScreenData['errorMessage'] = str('Dit is geen 2, 3 of 4')
-        mainScreenData['showContinueText'] = False
     
+    if(key == BACKSPACE):
+        mainScreenData['showContinueText'] = None
+    else:
+        if(key == '2' or key == '3' or key == '4'):
+            gameData['amountOfPlayers'] = key
+            mainScreenData['showContinueText'] = True
+            
+                # write the json data to a txt file
+            with open('gameData.txt', 'w') as outfile:
+                json.dump(gameData, outfile)
+        else:
+            mainScreenData['errorMessage'] = str('Dit is geen 2, 3 of 4')
+            mainScreenData['showContinueText'] = False
+        
     return gameData
 
 def createUsers():
