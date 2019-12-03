@@ -59,7 +59,7 @@ def drawAnimatingMap():
     else:
         randomPointX = getRandomXPointOnMap()
         # zoomIn= not zoomIn
-        print("zoomin",zoomIn)
+        # print("zoomin",zoomIn)
     if (randomPointY>0 and yPos<randomPointY)and yPos<539:
         yPos+=1*speed
     elif  (randomPointY<0 and yPos>randomPointY)and yPos>-539:
@@ -67,15 +67,15 @@ def drawAnimatingMap():
     else:
         randomPointY = getRandomYPointOnMap()
         # zoomIn= not zoomIn
-        print("zoomin",zoomIn)
+        # print("zoomin",zoomIn)
         
 def getRandomXPointOnMap():
     x=random(-(400),400)
-    print("x",x)
+    # print("x",x)
     return x
 def getRandomYPointOnMap():
     y=random(-(40),40)
-    print("y",y)
+    # print("y",y)
     return y
 def onRect(x, y, w, h):
     return(mouseX >= x and mouseX <= x + w and mouseY >= y and mouseY <= y + h)
@@ -84,9 +84,12 @@ def mousePressed():
     global startClicked
     if onRect((width/2)-250,(height-100),500,200):
         startClicked=True
+        
         print(startClicked)
         
 def mouseReleased():
-    global startClicked
+    global startClicked,shown,eventAllowed
     if onRect((width/2)-250,(height-100),500,200):
-        startClicked=False        
+        startClicked=False      
+        shown=False
+        eventAllowed=False  
