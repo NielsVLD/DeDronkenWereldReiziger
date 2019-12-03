@@ -34,8 +34,12 @@ def draw():
                 screens[index].draw()
         except Exception, e:
             #exception was thrown go back to last page
-            index-=1
-            screens[index].shown=True
+            if(index>0):
+                index-=1
+                screens[index].shown=True
+            else:
+                index=0
+                screens[index].shown=True
             print(str(e))
    
 def mousePressed():

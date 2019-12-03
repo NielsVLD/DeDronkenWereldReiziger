@@ -9,8 +9,11 @@ zoomIn=True
 title=None
 subtitle=None
 startClicked=False
+test=None
+shown=True
+eventAllowed=False
 def setup():
-    global mapBackground,randomPointX,randomPointY,zoomIn,title,subtitle,button
+    global mapBackground,randomPointX,randomPointY,zoomIn,title,subtitle,button,eventAllowed
     size(1000,800)
     mapBackground = loadImage("map.png")
     title = loadImage("title.png")
@@ -18,11 +21,13 @@ def setup():
     button = loadImage("button.png")
     randomPointX = getRandomXPointOnMap()
     randomPointY = getRandomYPointOnMap()
-    
+    eventAllowed=True
     zoomIn= 0>random(0,2)
     
 def draw():
-    global title,subtitle,button,startClicked
+    global title,subtitle,button,startClicked,test,shown
+    
+    test=True
     background(51)
     drawAnimatingMap()
     imageMode(CENTER)
@@ -35,6 +40,7 @@ def draw():
             cursor(HAND)
             if startClicked:
                 image(button, width/2,height-50,500*0.95,85*0.95)
+                shown=False
             else:
                 image(button, width/2,height-50,500*1.05,85*1.05)
         else:
@@ -73,10 +79,12 @@ def getRandomYPointOnMap():
     return y
 def onRect(x, y, w, h):
     return(mouseX >= x and mouseX <= x + w and mouseY >= y and mouseY <= y + h)
+
 def mousePressed():
     global startClicked
     if onRect((width/2)-250,(height-100),500,200):
         startClicked=True
+        print(startClicked)
         
 def mouseReleased():
     global startClicked
