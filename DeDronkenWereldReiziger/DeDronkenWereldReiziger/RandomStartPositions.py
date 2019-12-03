@@ -1,7 +1,7 @@
 #Wessel van leeuwen, 0986664, projectrgroep 3
 import random
 import time
-spelers=["joost","Kees"]
+spelers=["joost","Kees", "Wessel", "Test"]
 allStartPositions=["Oceanie","Europa","Azie","Noord-Amerika","Zuid-Amerika","Afrika"]
 spelerStartPositions=[]
 images={}
@@ -23,21 +23,29 @@ def draw():
     line((width/2),0,(width/2),800)
     if len(spelers) >= 3: 
         line(0,(height/2),width,((height/2)))
-    fill(51)
-    rect((width/2)-210, (height/2)-50, 420, 100)
+    
     fill(37, 107, 133)
     textAlign(CENTER,CENTER)
     textSize(30)
     if len(spelers) == 2:
+        fill(51)
+        rect((width/2)-210, 75, 420, 100)
+        fill(37, 107, 133)
         text("De Dronken Wereld Reiziger", width/2, 110)
         fill(27, 107, 133)
         rect((width/2)-75,height-125,150,50)
+        textSize(25)
+        text("Startposities", width/2, 145)
+        
     else:
+        fill(51)
+        rect((width/2)-210, (height/2)-50, 420, 100)
+        fill(37, 107, 133)
         text("De Dronken Wereld Reiziger", width/2, (height/2)-25)
         fill(27, 107, 133)
         rect((width/2)-75,height-125,150,50)
-    textSize(25)
-    text("Startposities", width/2, (height/2)+25)
+        textSize(25)
+        text("Startposities", width/2, (height/2)+25)
     textSize(15)
     drawPlayerAndPosition()
     textSize(14)
