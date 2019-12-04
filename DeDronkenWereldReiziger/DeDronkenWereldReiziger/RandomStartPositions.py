@@ -1,7 +1,7 @@
 #Wessel van leeuwen, 0986664, projectrgroep 3
 import random
 import time
-spelers=["joost","Kees", "Wessel", "Test"]
+spelers=["joost","Kees", "henk", "NAME"]
 allStartPositions=["Oceanie","Europa","Azie","Noord-Amerika","Zuid-Amerika","Afrika"]
 spelerStartPositions=[]
 images={}
@@ -98,17 +98,17 @@ def drawPlayerAndPosition():
 def drawContinents(continent,continentImg,x,y):
     imageMode(CENTER)
     if continent == "Europa":
-        image(continentImg, x, y, 300, 200)
+        image(continentImg, x, y, 231, 151)
     elif continent == "Noord-Amerika":
-        image(continentImg, x, y, 300, 200) 
+        image(continentImg, x, y, 442, 274) 
     elif continent == "Zuid-Amerika":
-        image(continentImg, x, y, 300, 200) 
+        image(continentImg, x, y, 157, 255) 
     elif continent == "Afrika":
-        image(continentImg, x, y, 300, 200)
+        image(continentImg, x, y, 234, 276)
     elif continent == "Azie":
-        image(continentImg, x, y, 300, 200)
+        image(continentImg, x, y, 362, 152)
     elif continent == "Oceanie":
-        image(continentImg, x, y, 300, 200)
+        image(continentImg, x, y, 235, 176)
 
 def calculateStartPositions():
     global spelerStartPositions
