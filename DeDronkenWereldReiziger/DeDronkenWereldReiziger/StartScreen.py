@@ -1,3 +1,7 @@
+# Voor navigatie en ontvangen van events als keypressed
+shown=True
+eventAllowed=False
+
 mapBackground=None
 mScale=2
 yPos=0
@@ -10,8 +14,7 @@ title=None
 subtitle=None
 startClicked=False
 test=None
-shown=True
-eventAllowed=False
+
 def setup():
     global mapBackground,randomPointX,randomPointY,zoomIn,title,subtitle,button,eventAllowed
     size(1000,800)
@@ -26,7 +29,6 @@ def setup():
     
 def draw():
     global title,subtitle,button,startClicked,test,shown
-    
     test=True
     background(51)
     drawAnimatingMap()

@@ -1,4 +1,9 @@
 # Nelus
+
+# Voor navigatie en ontvangen van events als keypressed
+shown=True
+eventAllowed=False
+
 ingevuldAntwoord =False
 def setup():
     size(1000,800)
@@ -49,7 +54,7 @@ def isMouseWithinRect(x,y,w,h):
     return (x < mouseX < x + w and y < mouseY < y + h)
  
 def mousePressed():
-    global ingevuldAntwoord, touched
+    global ingevuldAntwoord, touched, shown,eventAllowed
     if isMouseWithinRect(180-15, 200-15,30,30):
         ingevuldAntwoord=True
     elif isMouseWithinRect(180-15, 250-15,30,30):
@@ -57,4 +62,6 @@ def mousePressed():
     
     if isMouseWithinRect((width/2)-75,height-100,150,50):
         # nextPage
+        shown=False
+        eventAllowed=False
         print("to next page ingevuld antwoord: ",ingevuldAntwoord)

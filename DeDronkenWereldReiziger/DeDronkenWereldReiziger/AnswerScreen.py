@@ -1,7 +1,13 @@
+# Voor navigatie en ontvangen van events als keypressed
+shown=True
+eventAllowed=False
+
 lvraagnummer = 1
 antwoord = "Waar"
 goede_antwoord = "Waar"
 punten_goed_antwoord=0
+
+
 def setup():
     size(1000, 800)
     
@@ -31,3 +37,9 @@ def draw():
         else:
             fill(0,200,0)
         text("+"+str(punten_goed_antwoord)+" punten",width/2,480)
+        
+def keyPressed():
+    global shown,eventAllowed
+    if key==ENTER:
+        shown=False
+        eventAllowed=False

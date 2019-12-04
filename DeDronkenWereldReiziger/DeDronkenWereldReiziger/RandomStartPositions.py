@@ -1,6 +1,11 @@
 #Wessel van leeuwen, 0986664, projectrgroep 3
 import random
 import time
+
+# Voor navigatie en ontvangen van events als keypressed
+shown=True
+eventAllowed=False
+
 spelers=["joost","Kees", "henk", "NAME"]
 allStartPositions=["Oceanie","Europa","Azie","Noord-Amerika","Zuid-Amerika","Afrika"]
 spelerStartPositions=[]
@@ -119,9 +124,11 @@ def calculateStartPositions():
         spelerStartPositions.append(pos)
 
 def mousePressed():
-    global spelerStartPositions
+    global spelerStartPositions,shown,eventAllowed
     if onRect((width/2)-75,height-125,150,50):
         # next screen
+        shown=False
+        eventAllowed=False
         pass
 
 def onRect(x, y, w, h):

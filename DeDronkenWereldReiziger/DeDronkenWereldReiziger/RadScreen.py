@@ -1,4 +1,9 @@
 #Reindert
+
+# Voor navigatie en ontvangen van events als keypressed
+shown=True
+eventAllowed=False
+
 rotation = 2.0
 rotating=False
 speed=random(0.1,1.9)

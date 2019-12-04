@@ -2,6 +2,10 @@
 import functions
 import json
 
+# Voor navigatie en ontvangen van events als keypressed
+shown=True
+eventAllowed=False
+
 rectXDrankCheck = 660
 rectYDrankCheck = 680
 rectWidth = 50
@@ -144,7 +148,7 @@ def draw():
         text(str(gameData['users'][1]), 200, 150)
                 
 def keyPressed():
-    global gameData
+    global gameData,shown,eventAllowed
     
     createUsers()
     amountOfUsers()    
@@ -166,6 +170,10 @@ def keyPressed():
             # need to add 1 to the gamedata value because there is one player less to make
             if(int(mainScreenData['i']) == int(gameData['amountOfPlayers']) + 1):
                 mainScreenData['thirdScreen'] = True
+        # Als bij het laaste scherm op ENTER wordt gedrukt moet de volgende pagina verschijnen
+        if mainScreenData['thirdScreen']:
+            shown=False
+            eventAllowed=False
         
 def mouseClicked():
     global mainScreenData, gameData

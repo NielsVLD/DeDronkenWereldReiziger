@@ -1,11 +1,12 @@
-import StartScreen,CreateUsers, RandomStartPositions,QuestionScreen
+import StartScreen,CreateUsers, RandomStartPositions,QuestionScreen,AnswerScreen,RadScreen
 screens=[]
 goBack=False
 def setup():
     global screens
     size(1000,800)
-    screens=[StartScreen,CreateUsers, RandomStartPositions,QuestionScreen]
-    screens[0].setup()
+    screens=[StartScreen,CreateUsers, RandomStartPositions,QuestionScreen,AnswerScreen,RadScreen]
+    for i in screens:
+        i.setup()
 index=0
 pageSetup=False
 
