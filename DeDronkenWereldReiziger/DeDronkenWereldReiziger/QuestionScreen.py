@@ -6,6 +6,8 @@ eventAllowed=False
 
 ingevuldAntwoord =False
 def setup():
+    global eventAllowed
+    eventAllowed=True
     size(1000,800)
     loadImage('')
 

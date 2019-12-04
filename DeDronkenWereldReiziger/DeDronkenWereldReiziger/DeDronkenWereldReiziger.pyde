@@ -5,8 +5,6 @@ def setup():
     global screens
     size(1000,800)
     screens=[StartScreen,CreateUsers, RandomStartPositions,QuestionScreen,AnswerScreen,RadScreen]
-    for i in screens:
-        i.setup()
 index=0
 pageSetup=False
 
@@ -49,9 +47,19 @@ def mousePressed():
         try:
             if i.eventAllowed:
                 i.mousePressed()
-        except:
-            print('error by mousepressed in: '+str(i)+' --- ignored')
-            
+                i.mouseClicked()
+        except Exception, e:
+            print('error by mousepressed in: '+str(i)+' --- ignored\n'+str(e))
+
+# def mouseClicked():
+#     global screens
+#     for i in screens:
+#         try:
+#             if i.eventAllowed:
+#                 i.mouseClicked()
+#         except Exception, e:
+#             print('error by mouseClicked in: '+str(i)+' --- ignored\n'+str(e))
+
 def mouseReleased():
     global screens
     for i in screens:

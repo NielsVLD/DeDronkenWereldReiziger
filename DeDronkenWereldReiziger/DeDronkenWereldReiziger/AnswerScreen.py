@@ -9,6 +9,8 @@ punten_goed_antwoord=0
 
 
 def setup():
+    global eventAllowed
+    eventAllowed=True
     size(1000, 800)
     
 def draw():

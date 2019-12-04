@@ -42,7 +42,8 @@ blinkOn = None
 
 
 def setup():
-    global checked, notChecked, blinkTime, blinkOn
+    global checked, notChecked, blinkTime, blinkOn,eventAllowed
+    eventAllowed=True
     fill(37, 107, 133)
     size(1000, 800)
     
@@ -69,6 +70,7 @@ def setup():
     
             
 def draw():
+   
     
     # set background color
     background(51)
@@ -148,7 +150,7 @@ def draw():
         text(str(gameData['users'][1]), 200, 150)
                 
 def keyPressed():
-    global gameData
+    global gameData,shown,eventAllowed
     
     createUsers()
     amountOfUsers()    
@@ -170,11 +172,11 @@ def keyPressed():
             # need to add 1 to the gamedata value because there is one player less to make
             if(int(mainScreenData['i']) == int(gameData['amountOfPlayers']) + 1):
                 mainScreenData['thirdScreen'] = True
-        if mainScreenData['thirdScreen']:
-            shown=False
-            eventAllowed=False
+                shown=False
+                eventAllowed=False
+           
         
-def mouseClicked():
+def mousePressed():
     global mainScreenData, gameData
     
     mouseCheck = functions.onRect(rectXDrankCheck, rectYDrankCheck, rectWidth, rectHeight)
@@ -185,6 +187,8 @@ def mouseClicked():
     else:
         gameData['drank'] = True
         mainScreenData['checkImage'] = checked
+        
+        
     
 def amountOfUsers():
     

@@ -11,7 +11,8 @@ allStartPositions=["Oceanie","Europa","Azie","Noord-Amerika","Zuid-Amerika","Afr
 spelerStartPositions=[]
 images={}
 def setup():
-    global images
+    global images, eventAllowed
+    eventAllowed=True
     size(1000,800)
     calculateStartPositions()
     images[allStartPositions[1]]=loadImage("EUrope.png")

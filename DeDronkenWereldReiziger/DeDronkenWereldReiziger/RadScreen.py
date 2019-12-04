@@ -12,6 +12,8 @@ drinkActions=["1 shot","2 shots","iedereen 1 shot","1 atje","iedereen atten","2 
 radHeight=650
 
 def setup():
+    global eventAllowed
+    eventAllowed=True
     size(1000,800)
     
 def draw():
