@@ -11,7 +11,6 @@ randomPointY=0
 speed=1
 zoomIn=True
 title=None
-subtitle=None
 startClicked=False
 test=None
 
@@ -20,7 +19,6 @@ def setup():
     size(1000,800)
     mapBackground = loadImage("map.png")
     title = loadImage("title.png")
-    subtitle = loadImage("subtitle.png")
     button = loadImage("button.png")
     randomPointX = getRandomXPointOnMap()
     randomPointY = getRandomYPointOnMap()
@@ -35,8 +33,6 @@ def draw():
     imageMode(CENTER)
     if title!=None:
         image(title, width/2,50)
-    if subtitle!=None:
-        image(subtitle, width/2,height/2)
     if button!=None:
         if onRect((width/2)-250,(height-100),500,200):
             cursor(HAND)
