@@ -70,15 +70,15 @@ def createUsers():
     rect(width/4, height/ 5, 300, 80)
     fill(37, 107,133)
     
-# def createUser():
-#     global userName
+def createUser():
+    global userName
     
-#     if (int(ord(key)) == 8):
-#        userName = userName[:-1]
-#        return userName
-#     else:
-#         userName = userName + str(key)          
-#         return userName
+    if (int(ord(key)) == 8):
+       userName = userName[:-1]
+       return userName
+    else:
+        userName = userName + str(key)          
+        return userName
     
 def clearUserInput():
     global userName
