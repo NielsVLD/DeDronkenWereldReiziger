@@ -124,7 +124,10 @@ def mouseReleased():
         rotating=not rotating
             
 def keyPressed():
-    global rotating
+    global rotating, shown,eventAllowed
+    if key==ENTER:
+        shown=False
+        eventAllowed=False
     if key == TAB and not rotating:
         rotating=not rotating
         
