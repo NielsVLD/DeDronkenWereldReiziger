@@ -1,4 +1,5 @@
 import StartScreen,CreateUsers, RandomStartPositions,QuestionScreen,AnswerScreen,RadScreen, functions
+import traceback
 screens=[]
 goBack=False
 gameData={}
@@ -70,8 +71,9 @@ def mousePressed():
         try:
             if i.eventAllowed:
                 i.mouseClicked()
-        except Exception, e:
+        except Exception as e:
             print('mousepressed caused error in: '+str(i)+' --- ignored\n'+str(e))
+            traceback.print_exc()
             
 def mouseClicked():
     global screens
@@ -79,8 +81,9 @@ def mouseClicked():
         try:
             if i.eventAllowed:
                 i.mouseClicked()
-        except Exception, e:
+        except Exception as e:
             print('mouseClicked caused error in: '+str(i)+' --- ignored\n'+str(e))
+            traceback.print_exc()
 
 # def mouseClicked():
 #     global screens
@@ -99,6 +102,7 @@ def mouseReleased():
                 i.mouseReleased()
         except Exception, e:
             print('mousereleased caused error in: '+str(i)+' --- ignored'+str(e))
+            traceback.print_exc()
             
             
 def keyPressed():
@@ -117,5 +121,6 @@ def keyPressed():
                     screens[index].shown=True
                 else:
                     i.keyPressed()
-        except Exception, e:
+        except Exception as e:
             print('keyPressed caused error in: '+str(i)+' --- ignored\n'+str(e))    
+            traceback.print_exc()
