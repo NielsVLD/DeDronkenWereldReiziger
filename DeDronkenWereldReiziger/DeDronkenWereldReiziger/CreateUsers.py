@@ -264,11 +264,12 @@ def mouseClicked():
         gameData['showYounghestPlayer'] = gameData['youghestPlayer'] - 1
     else:
         rects['checkYoughestPlayer4'] = None
-            
-    if(gameData['users'][gameData['showYounghestPlayer']] == ''):
-        gameData['errorMessage'] = 'u moet een ingevuld veld kiezen als jongste speler'        
-    else:
-        gameData['errorMessage'] = None
+     
+    if(yP4Check or yP3Check or yP2Check or yP1Check):
+        if(gameData['users'][gameData['showYounghestPlayer']] == ''):
+            gameData['errorMessage'] = 'u moet een ingevuld veld kiezen als jongste speler'        
+        else:
+            gameData['errorMessage'] = None
         
 def keyPressed():
     global gameData
