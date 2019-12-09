@@ -74,15 +74,18 @@ def createUser():
     global userName
     
     if (int(ord(key)) == 8):
-       userName = userName[:-1]
-       return userName
+        if userName!=None: 
+            userName = userName[:-1]
+        return userName
     else:
+        if userName==None: 
+            userName=''
         userName = userName + str(key)          
         return userName
     
 def clearUserInput():
     global userName
-    userName = ''
+    userName = None
     return userName
 
 def showImage(imagee, xPosition, yPosition):

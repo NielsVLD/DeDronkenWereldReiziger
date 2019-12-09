@@ -17,8 +17,8 @@ gameData = {}
 gameData['alcoholicCheck'] = None
 gameData['amountOfUsers'] = None
 gameData['checkAmountOfUsers'] = 0
-gameData['numberAmountOfUsers'] = None
-gameData['users'] = ['', '', '', '']
+gameData['numberAmountOfUsers'] = 0
+gameData['users'] = [None, None, None, None]
 gameData['youghestPlayer'] = None
 gameData['showYounghestPlayer'] = None
 gameData['errorMessage'] = None
@@ -120,7 +120,7 @@ def draw():
         # Row one code----------------------------------------------Row one code
         functions.createRectWithColor(180, 200, 60, 50, setupData['red'])
         functions.createRectWithColor(rects['createUser1'][0], rects['createUser1'][1], rects['createUser1'][2], rects['createUser1'][3], setupData['defaultColor'])
-        text(str(gameData['users'][0]), width/2, 230)
+        text(str(gameData['users'][0] if gameData['users'][0] is not None else ''), width/2, 230)
         
         functions.createRectWithColor(rects['yP1Check'][0], rects['yP1Check'][1], rects['yP1Check'][2], rects['yP1Check'][3], setupData['defaultColor'])
         functions.showImage(setupData['imageNotChecked'], rects['yP1Check'][0] + 30, rects['yP1Check'][1]+ 20)
@@ -136,7 +136,7 @@ def draw():
         # Row two code----------------------------------------------Row two code
         functions.createRectWithColor(180, 350, 60, 50, setupData['green']) 
         functions.createRectWithColor(rects['createUser2'][0], rects['createUser2'][1], rects['createUser2'][2], rects['createUser2'][3], setupData['defaultColor'])
-        text(str(gameData['users'][1]), width/2, 380)
+        text(str(gameData['users'][1] if gameData['users'][1] is not None else ''), width/2, 380)
         
         functions.createRectWithColor(rects['yP2Check'][0], rects['yP2Check'][1], rects['yP2Check'][2], rects['yP2Check'][3], setupData['defaultColor'])
         functions.showImage(setupData['imageNotChecked'], rects['yP2Check'][0] + 30, rects['yP2Check'][1]+ 20)
@@ -152,7 +152,7 @@ def draw():
         # Row three code----------------------------------------------Row three code
         functions.createRectWithColor(180, 500, 60, 50, setupData['blue'])
         functions.createRectWithColor(rects['createUser3'][0], rects['createUser3'][1], rects['createUser3'][2], rects['createUser3'][3], setupData['defaultColor'])
-        text(str(gameData['users'][2]), width/2, 530)
+        text(str(gameData['users'][2] if gameData['users'][2] is not None else ''), width/2, 530)
         
         functions.createRectWithColor(rects['yP3Check'][0], rects['yP3Check'][1], rects['yP3Check'][2], rects['yP3Check'][3], setupData['defaultColor'])
         functions.showImage(setupData['imageNotChecked'], rects['yP3Check'][0] + 30, rects['yP3Check'][1]+ 20)
@@ -168,7 +168,7 @@ def draw():
         # Row four code----------------------------------------------Row four code
         functions.createRectWithColor(180, 650, 60, 50, setupData['yellow'])
         functions.createRectWithColor(rects['createUser4'][0], rects['createUser4'][1], rects['createUser4'][2], rects['createUser4'][3], setupData['defaultColor'])
-        text(str(gameData['users'][3]), width/2, 680)
+        text(str(gameData['users'][3] if gameData['users'][3] is not None else ''), width/2, 680)
         
         functions.createRectWithColor(rects['yP4Check'][0], rects['yP4Check'][1], rects['yP4Check'][2], rects['yP4Check'][3], setupData['defaultColor'])
         functions.showImage(setupData['imageNotChecked'], rects['yP4Check'][0] + 30, rects['yP4Check'][1]+ 20)
@@ -186,8 +186,8 @@ def draw():
         else:
             if(screens['thirdScreen']):
                 functions.clearPage()
-                text('de spelers zijn', width/2, 50)
-                showUsersWithChoosenColor()
+                # text('de spelers zijn', width/2, 50)
+                # showUsersWithChoosenColor()
                 shown= False
                 eventAllowed=False
             
@@ -266,7 +266,7 @@ def mouseClicked():
         rects['checkYoughestPlayer4'] = None
      
     if(yP4Check or yP3Check or yP2Check or yP1Check):
-        if(gameData['users'][gameData['showYounghestPlayer']] == ''):
+        if(gameData['users'][gameData['showYounghestPlayer']] == None):
             gameData['errorMessage'] = 'u moet een ingevuld veld kiezen als jongste speler'        
         else:
             gameData['errorMessage'] = None
@@ -278,7 +278,7 @@ def keyPressed():
         gameData['amountOfUsers'] = functions.amountOfUsers()
         
     if(key == ENTER and gameData['amountOfUsers'] != 'Dit is geen 2, 3 of 4'):
-        gameData['numberAmountOfUsers'] = gameData['amountOfUsers']
+        gameData['numberAmountOfUsers'] = gameData['amountOfUsers'] if gameData['amountOfUsers'] is not None else 0 
         if(gameData['amountOfUsers'] != None):
             screens['secondScreen'] = True
             functions.clearPage()
@@ -304,20 +304,20 @@ def keyPressed():
         else:
             gameData['errorMessage'] = None
             
-        if(gameData['users'][gameData['showYounghestPlayer']] == ''):
+        if(gameData['users'][gameData['showYounghestPlayer']] == None):
                 gameData['errorMessage'] = 'u moet een ingevuld veld kiezen als jongste speler'        
         else:
             gameData['errorMessage'] = None
     
             if(key == ENTER and gameData['youghestPlayer'] != None):
                 if(screens['thirdScreen'] != True):
-                    if(gameData['users'][0] != ''):
+                    if(gameData['users'][0] != None):
                         gameData['checkAmountOfUsers'] += 1
-                    if(gameData['users'][1] != ''):
+                    if(gameData['users'][1] != None):
                         gameData['checkAmountOfUsers'] += 1
-                    if(gameData['users'][2] != ''):
+                    if(gameData['users'][2] != None):
                         gameData['checkAmountOfUsers'] += 1
-                    if(gameData['users'][3] != ''):
+                    if(gameData['users'][3] != None):
                         gameData['checkAmountOfUsers'] += 1
                 
                 if(int(gameData['numberAmountOfUsers']) > int(gameData['checkAmountOfUsers'])):
@@ -336,21 +336,22 @@ def keyPressed():
                     screens['thirdScreen'] = True
             
 def showUsersWithChoosenColor():
-    if(gameData['users'][0] != ''):    
+    if(gameData['users'][0] != None):    
         fill(setupData['red'])
-        text(str(gameData['users'][0]), width/2, 200)
+        text(str(gameData['users'][0] if gameData['users'][0] is not None else ''), width/2, 200)
         
-    if(gameData['users'][1] != ''):            
+    if(gameData['users'][1] != None):            
         fill(setupData['green'])
-        text(str(gameData['users'][1]), width/2, 300)
+        text(str(gameData['users'][1] if gameData['users'][1] is not None else ''), width/2, 300)
     
-    if(gameData['users'][2] != ''):      
+    if(gameData['users'][2] != None):      
         fill(setupData['blue'])
-        text(str(gameData['users'][2]), width/2, 400)
+        text(str(gameData['users'][2] if gameData['users'][2] is not None else ''), width/2, 400)
                 
-    if(gameData['users'][3] != ''):       
+    if(gameData['users'][3] != None):       
         fill(setupData['yellow'])    
-        text(str(gameData['users'][3]), width/2, 500)
+        text(str(gameData['users'][3] if gameData['users'][3] is not None else ''), width/2, 500)
         
     fill(255)
-    text('de jongste speler is :' + str(gameData['users'][gameData['showYounghestPlayer']]), width/2 , 600)
+    yUser=gameData['users'][gameData['showYounghestPlayer']]
+    text('de jongste speler is :' + str(yUser if yUser is not None else ''), width/2 , 600)
