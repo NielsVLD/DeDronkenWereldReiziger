@@ -42,6 +42,9 @@ screens['secondScreen'] = None
 screens['thirdScreen'] = None
 
 
+shown=True
+eventAllowed=False
+
 def setup():
     global setupData, blinkers
 
@@ -118,6 +121,10 @@ def draw():
                 functions.clearPage()
                 text('de spelers zijn', width/2, 50)
                 showUsersWithChoosenColor()
+                
+                shown=False
+                eventAllowed=False
+        
         for i in range(len(blinkers)):
             if blinkers[i]:
                  functions.blink(500, 210+(i*150), 500, 240+(i*150))
