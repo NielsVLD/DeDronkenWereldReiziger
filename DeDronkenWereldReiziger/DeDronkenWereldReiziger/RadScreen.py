@@ -2,7 +2,6 @@
 
 # Voor navigatie en ontvangen van events als keypressed
 shown=True
-eventAllowed=False
 
 rotation = 2.0
 rotating=False
@@ -12,8 +11,6 @@ drinkActions=["1 shot","2 shots","iedereen 1 shot","1 atje","iedereen atten","2 
 radHeight=650
 
 def setup():
-    global eventAllowed
-    eventAllowed=True
     size(1000,800)
     
 def draw():
@@ -124,10 +121,9 @@ def mouseReleased():
         rotating=not rotating
             
 def keyPressed():
-    global rotating, shown,eventAllowed
+    global rotating, shown
     if key==ENTER:
         shown=False
-        eventAllowed=False
     if key == TAB and not rotating:
         rotating=not rotating
         

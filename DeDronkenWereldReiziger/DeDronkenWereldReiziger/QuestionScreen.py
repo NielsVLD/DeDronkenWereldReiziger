@@ -3,11 +3,9 @@ touched = False
 img = None
 img1 = None
 shown=True
-eventAllowed=False
 firstTime = True
 def setup():
-    global eventAllowed,img,img1
-    eventAllowed=True
+    global img,img1
     size(1000,800)
     img = loadImage('checked.png')
     img1 = loadImage('notchecked.png')
@@ -75,7 +73,7 @@ def isMouseWithinRect(x,y,w,h):
     return (x < mouseX < x + w and y < mouseY < y + h)
  
 def mousePressed():
-    global ingevuldAntwoord, touched, firstTime, shown,eventAllowed
+    global ingevuldAntwoord, touched, firstTime, shown
     if isMouseWithinRect(190-20, 200-15,30,30):
         firstTime = False
         ingevuldAntwoord=True
@@ -88,4 +86,3 @@ def mousePressed():
         # nextPage
         print("to next page ingevuld antwoord: ",ingevuldAntwoord)
         shown=False
-        eventAllowed=False
