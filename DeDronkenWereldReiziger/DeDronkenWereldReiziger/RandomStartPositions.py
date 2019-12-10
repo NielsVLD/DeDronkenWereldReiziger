@@ -64,57 +64,46 @@ def drawPlayerAndPosition():
     fill(255)
     for i,speler in enumerate(spelers) :
         textAlign(CENTER,CENTER)
+        textSize(25)
         if len(spelers)==2:
             if i==0:
-                text(speler, ((width/4)), (height/2)-140)
+                text(speler + " heeft:", ((width/4)), (height/2)-170)
             elif i==1:
-                 text(speler, (width-(width/4)), (height/2)-140)
+                 text(speler + " heeft:", (width-(width/4)), (height/2)-170)
         elif len(spelers)>=3:
             if i==0:
-                text(speler, ((width/4)), (height/4)- 140)
+                text(speler + " heeft:", ((width/4)), (height/4)- 170)
             elif i==1:
-                text(speler, (width-(width/4)), (height/4)- 140)
+                text(speler + " heeft:", (width-(width/4)), (height/4)- 170)
             elif i==2:
-                text(speler, ((width/4)), height-(height/4)- 140)
+                text(speler + " heeft:", ((width/4)), height-(height/4)+ 170)
             elif i==3:
-                text(speler, (width-(width/4)), height-(height/4) - 140)
+                text(speler + " heeft:", (width-(width/4)), height-(height/4) + 170)
+    textSize(14)
     for i,spelerStartPos in enumerate(spelerStartPositions):
         textAlign(CENTER,CENTER)
+        textSize(25)
         if len(spelers)==2:
             if i==0:
                 drawContinents(spelerStartPos,images[spelerStartPos],((width/4)), (height/2))
-                text(spelerStartPos, ((width/4)), (height/2))
+                text(spelerStartPos, ((width/4)), (height/2)+170)
             elif i==1:       
                  drawContinents(spelerStartPos,images[spelerStartPos], (width-(width/4)), (height/2))
-                 text(spelerStartPos, (width-(width/4)), (height/2))
+                 text(spelerStartPos, (width-(width/4)), (height/2)+170)
         elif len(spelers)>=3:
             if i==0:                
                 drawContinents(spelerStartPos,images[spelerStartPos], ((width/4)), (height/4))
-                text(spelerStartPos, ((width/4)), (height/4))
+                text(spelerStartPos, ((width/4)-100), (height/4)+170)
             elif i==1:                
                 drawContinents(spelerStartPos,images[spelerStartPos], (width-(width/4)), (height/4))
-                text(spelerStartPos, (width-(width/4)), (height/4))
+                text(spelerStartPos, (width-(width/4)+100), (height/4)+170)
             elif i==2:                
                 drawContinents(spelerStartPos,images[spelerStartPos],  ((width/4)), height-(height/4))
-                text(spelerStartPos, ((width/4)), height-(height/4))
+                text(spelerStartPos, ((width/4)-100), height-(height/4)-170)
             elif i==3:            
                 drawContinents(spelerStartPos,images[spelerStartPos], (width-(width/4)), height-(height/4))
-                text(spelerStartPos, (width-(width/4)), height-(height/4))
-
-def drawContinents(continent,continentImg,x,y):
-    imageMode(CENTER)
-    if continent == "Europa":
-        image(continentImg, x, y, 231, 151)
-    elif continent == "Noord-Amerika":
-        image(continentImg, x, y, 442, 274) 
-    elif continent == "Zuid-Amerika":
-        image(continentImg, x, y, 157, 255) 
-    elif continent == "Afrika":
-        image(continentImg, x, y, 234, 276)
-    elif continent == "Azie":
-        image(continentImg, x, y, 362, 152)
-    elif continent == "Oceanie":
-        image(continentImg, x, y, 235, 176)
+                text(spelerStartPos, (width-(width/4)+100), height-(height/4)-170)
+        textSize(14)
 
 def calculateStartPositions():
     global spelerStartPositions
