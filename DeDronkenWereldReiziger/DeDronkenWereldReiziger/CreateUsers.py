@@ -46,7 +46,9 @@ shown=True
 eventAllowed=False
 
 def setup():
-    global setupData, blinkers
+    global setupData, blinkers, eventAllowed
+    
+    eventAllowed = True
 
     # setting the background color
     fill(37, 107, 133)
