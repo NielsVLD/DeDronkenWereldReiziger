@@ -17,10 +17,8 @@ def draw():
         try:
             if goBack:
                 screens[index].shown=True
-                screens[index].eventAllowed=False
                 index-=1
                 screens[index].shown=True
-                screens[index].eventAllowed=True
                 print("going back")
                 goBack=False
             if not screens[index].shown:
@@ -42,14 +40,13 @@ def draw():
                             listUsers = gameData['users']
                             res = []
                             for val in listUsers: 
-                                if val != None : 
+                                if val != None and val!='' : 
                                     res.append(val) 
                             screens[index].spelers=res
                             
                         pageSetup=True
                 else:
                     screens[index].shown=False
-                    screens[index].eventAlloweds=False
                     index=4
                     print('Alcohol isnt allowed so dont go to the drink rad')
              
@@ -72,8 +69,7 @@ def draw():
 def mousePressed():
     global screens
     try:
-        if screens[index].eventAllowed:
-            screens[index].mousePressed()
+        screens[index].mousePressed()
     except Exception as e:
         print('mousepressed caused error in: '+str(screens[index])+' --- ignored\n'+str(e))
         traceback.print_exc()
@@ -81,8 +77,7 @@ def mousePressed():
 def mouseClicked():
     global screens
     try:
-        if screens[index].eventAllowed:
-            screens[index].mouseClicked()
+        screens[index].mouseClicked()
     except Exception as e:
         print('mouseClicked caused error in: '+str(screens[index])+' --- ignored\n'+str(e))
         traceback.print_exc()
@@ -99,8 +94,7 @@ def mouseClicked():
 def mouseReleased():
     global screens
     try:
-        if screens[index].eventAllowed:
-            screens[index].mouseReleased()
+        screens[index].mouseReleased()
     except Exception, e:
         print('mousereleased caused error in: '+str(screens[index])+' --- ignored'+str(e))
         traceback.print_exc()
@@ -111,9 +105,7 @@ def keyPressed():
     if key==TAB and index>0:
         goBack=True
     try:
-        
-        if screens[index].eventAllowed:
-            screens[index].keyPressed()
+        screens[index].keyPressed()
             
     except Exception as e:
         print('keyPressed caused error in: '+str(screens[index])+' --- ignored\n'+str(e))    

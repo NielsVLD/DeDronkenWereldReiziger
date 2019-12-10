@@ -46,7 +46,9 @@ shown=True
 eventAllowed=False
 
 def setup():
-    global setupData, blinkers
+    global setupData, blinkers, eventAllowed
+    
+    eventAllowed = True
 
     # setting the background color
     fill(37, 107, 133)
@@ -62,7 +64,7 @@ def setup():
     setupData['imageNotChecked'] = loadImage('images/notchecked.png')
 
 def draw():
-    global setupData, blinkers,yPlayers,imgWidth,imgHeight
+    global setupData, blinkers,yPlayers,imgWidth,imgHeight,shown
     background(51)
     # text size for the title of this project
     textSize(32)
@@ -123,7 +125,6 @@ def draw():
                 showUsersWithChoosenColor()
                 
                 shown=False
-                eventAllowed=False
         
         for i in range(len(blinkers)):
             if blinkers[i]:
