@@ -1,4 +1,4 @@
-# Nelus
+# Nielus
 
 # Voor navigatie en ontvangen van events als keypressed
 shown=True
