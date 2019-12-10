@@ -40,7 +40,7 @@ def draw():
                             listUsers = gameData['users']
                             res = []
                             for val in listUsers: 
-                                if val != None : 
+                                if val != None and val!='' : 
                                     res.append(val) 
                             screens[index].spelers=res
                             
