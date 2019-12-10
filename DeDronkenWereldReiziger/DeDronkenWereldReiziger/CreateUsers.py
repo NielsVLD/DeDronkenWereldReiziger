@@ -121,8 +121,6 @@ def draw():
         else:
             if(screens['thirdScreen']):
                 functions.clearPage()
-                text('de spelers zijn', width/2, 50)
-                showUsersWithChoosenColor()
                 
                 shown=False
         

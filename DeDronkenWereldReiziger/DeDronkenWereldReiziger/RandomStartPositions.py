@@ -104,7 +104,22 @@ def drawPlayerAndPosition():
                 drawContinents(spelerStartPos,images[spelerStartPos], (width-(width/4)), height-(height/4))
                 text(spelerStartPos, (width-(width/4)+100), height-(height/4)-170)
         textSize(14)
-
+        
+def drawContinents(continent,continentImg,x,y):
+    imageMode(CENTER)
+    if continent == "Europa":
+        image(continentImg, x, y, 231, 151)
+    elif continent == "Noord-Amerika":
+        image(continentImg, x, y, 442, 274) 
+    elif continent == "Zuid-Amerika":
+        image(continentImg, x, y, 157, 255) 
+    elif continent == "Afrika":
+        image(continentImg, x, y, 234, 276)
+    elif continent == "Azie":
+        image(continentImg, x, y, 362, 152)
+    elif continent == "Oceanie":
+        image(continentImg, x, y, 235, 176)
+        
 def calculateStartPositions():
     global spelerStartPositions
     newAllStartPositions=list(allStartPositions)

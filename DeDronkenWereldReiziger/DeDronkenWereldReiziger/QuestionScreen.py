@@ -12,10 +12,10 @@ def setup():
 
 def draw():
     global ingevuldAntwoord,firstTime
-    background(255)
+    background(51)
     
-    #fill(37, 107,133)
-    fill(0)
+    fill(37, 107,133)
+    # fill(0)
     stroke(255,188,0)
     strokeWeight(2)
     rect(0,0,width,height)
