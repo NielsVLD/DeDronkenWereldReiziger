@@ -87,8 +87,9 @@ def mousePressed():
     if isMouseWithinRect((width/2)-75,height-100,150,50):
         # nextPage
         print("to next page ingevuld antwoord: ",ingevuldAntwoord)
-        firstTime=True
-        shown=False
+        if not firstTime:
+            firstTime=True
+            shown=False
 def keyPressed():
     global firstTime, shown,ingevuldAntwoord
     

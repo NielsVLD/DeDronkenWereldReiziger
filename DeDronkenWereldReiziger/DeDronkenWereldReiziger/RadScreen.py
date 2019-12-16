@@ -2,7 +2,7 @@
 
 # Voor navigatie en ontvangen van events als keypressed
 shown=True
-
+answeredCorrect=False
 rotation = 2.0
 rotating=False
 speed=random(0.1,1.9)
@@ -12,9 +12,11 @@ radHeight=650
 
 def setup():
     size(1000,800)
+    print("now on radScreen")
     
 def draw():
-    global rotation,rotating,speed,radHeight
+    global rotation,rotating,speed,radHeight,answeredCorrect
+    
     background(51)
     textSize(25)
     if overCircle(width/2,height/2,radHeight):
@@ -23,6 +25,12 @@ def draw():
         text("Klik om te draaien!",width/2,25)
     else:
         cursor(ARROW)
+        if answeredCorrect:
+            textAlign(CENTER,CENTER)
+            text("De vraag was goed beantwoord: Deel uit!",width/2,25)
+        else:
+            textAlign(CENTER,CENTER)
+            text("De vraag was fout beantwoord: Drink zelf!",width/2,25)
     push()
     translate(width/2, height/2)
     drawLegs()
@@ -100,13 +108,20 @@ def drawArrow():
     triStartP= [0,0]
     triP2 =[-20,75]
     triP3=[20,75]
-    stroke(255)
-    fill(255)
+    if rotating:
+        fill(255)
+        stroke(255)
+    else:
+        fill(0,255,0)
+        stroke(0,255,0)
     push()
     translate((width/2), (height/2)+((radHeight/2)-50))
     triangle(triStartP[0],triStartP[1],triP2[0],triP2[1],triP3[0],triP3[1])
     triangle(triStartP[0],triStartP[1]+100,triP2[0],triP2[1],triP3[0],triP3[1])
     pop()
+    fill(255)
+    stroke(255)
+    
 def drawLegs():
     fill(110,80,64)
     stroke(255,188,0)
