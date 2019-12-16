@@ -1,16 +1,31 @@
 # Voor navigatie en ontvangen van events als keypressed
 shown=True
 
-vraag = "Hawaii behoort ook tot Oceanie"
-antwoord = ""
+vraag ={
+        "q_a_0": {
+            "question": "voorbeeld?",
+            "answer": 1,
+            "points": 1,
+            "answers": {
+                "1": True,
+                "2": False
+            }
+        }
+    },
+antwoord = "Waar"
 goede_antwoord = "Waar"
 punten_goed_antwoord=0
 
 
 def setup():
     size(1000, 800)
+    vraag[vraag.keys()[0]]["answers"]vraag[vraag.keys()[0]]['answer']
     
 def draw():
+    global vraag
+    
+    
+    
     background(255)
     fill(37, 107,133)
     stroke(255,188,0)
@@ -20,27 +35,22 @@ def draw():
     textAlign(CENTER)
     textSize(20)
     fill(255)
-    text(vraag,width/2,63)
+    text(vraag[vraag.keys()[0]]['question'],width/2,63)
     text("Vraag:",width/2,30)
     line(0,37, width, 37)
     text("Uw antwoord is",width/2,120)
     line(0,127, width, 127)
-    text(antwoord,width/2,160)
+    text(,width/2,160)
     text("Het goede antwoord is",width/2,400)
     text(goede_antwoord,width/2,440)
-    punten=0
-    if antwoord==goede_antwoord:
-        punten=punten_goed_antwoord
-    if punten == 1:
-        fill(0,200,0)
-        text("+"+str(punten)+" punt",width/2,480)
+    if punten_goed_antwoord == 1:
+        text("+"+str(punten_goed_antwoord)+" punt",width/2,480)
     else:
-        if punten == 0:
+        if punten_goed_antwoord == 0:
             fill(200,0,0)
-            text("Helaas geen punten",width/2,480)
         else:
             fill(0,200,0)
-            text("+"+str(punten)+" punten",width/2,480)
+        text("+"+str(punten_goed_antwoord)+" punten",width/2,480)
         
 def keyPressed():
     global shown

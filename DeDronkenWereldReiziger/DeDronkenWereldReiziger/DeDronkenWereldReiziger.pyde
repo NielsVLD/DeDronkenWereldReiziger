@@ -3,15 +3,47 @@ import traceback
 screens=[]
 goBack=False
 gameData={}
+qanda={}
+currentQuestion={}
+currentAnswer='Geen'
+questionAnsweredCorrect=False
 def setup():
-    global screens
+    global screens,qanda
     size(1000,800)
     screens=[StartScreen,CreateUsers, RandomStartPositions,QuestionScreen,AnswerScreen,RadScreen]
+    qanda = functions.getQAndAJson()
 index=0
 pageSetup=False
-
+def getRandomQuestion():
+    global qanda
+    try:
+        lengthQanda = len(qanda)
+        rdmInt = int(random(0,lengthQanda))
+        return qanda[rdmInt]
+    except Exception, e:
+        print("could not get question",e)
+        
+def SetupPage3():
+    global currentQuestion
+    currentQuestion= getRandomQuestion()
+    #get the first object from the questionobject
+    currentQuestion= currentQuestion[currentQuestion.keys()[0]]
+    screens[3].vraag=currentQuestion['question']
+    print("Random question sent through to screen\n",currentQuestion)
+   
+def SetupPage4(): 
+    global currentQuestion
+    screens[4].vraag=screens[3].vraag
+    screens[4].punten_goed_antwoord=1
+    screens[4].antwoord=currentAnswer
+    try:
+        screens[4].goede_antwoord=currentQuestion['answers'][str(currentQuestion['answer'])]   
+    except Exception, e:
+        print('currentQuestion',currentQuestion)
+        print("could not get answers",e)    
+    
 def draw():
-    global index,pageSetup,screens,goBack,gameData
+    global index,pageSetup,screens,goBack,gameData,currentAnswer,questionAnsweredCorrect
     
     if screens!=None:
         try:
@@ -23,11 +55,19 @@ def draw():
                 goBack=False
             if not screens[index].shown:
                 pageSetup=False
-                index+=1
+                if index==5:
+                    index=3
+                    screens[5].shown=True
+                    screens[4].shown=True
+                    screens[3].shown=True
+                else:
+                    index+=1
                 print('goto next screen',index) 
             else:
                 if (index != 5) or (index==5 and gameData['alcoholicCheck']):
                     if not pageSetup:
+                        if gameData!={}:
+                            print("use alcohol",gameData['alcoholicCheck'])
                         print('screen',index)  
                         cursor(ARROW)
                         screens[index].setup()
@@ -43,13 +83,24 @@ def draw():
                                 if val != None and val!='' : 
                                     res.append(val) 
                             screens[index].spelers=res
-                            
+                        if index==3:
+                            SetupPage3()
+                        if index==3:
+                            SetupPage4()
+                        
                         pageSetup=True
                 else:
                     screens[index].shown=False
                     index=4
                     print('Alcohol isnt allowed so dont go to the drink rad')
              
+                if index==4:
+                    currentAnswer=screens[3].ingevuldAntwoord
+                    screens[4].antwoord=currentAnswer
+                    # print(currentAnswer)
+                if index==5:
+                    questionAnsweredCorrect=currentAnswer==screens[4].goede_antwoord
+                    screens[5].answeredCorrect=questionAnsweredCorrect
                 screens[index].draw()
                     
         except Exception, e:
@@ -71,16 +122,18 @@ def mousePressed():
     try:
         screens[index].mousePressed()
     except Exception as e:
-        print('mousepressed caused error in: '+str(screens[index])+' --- ignored\n'+str(e))
-        traceback.print_exc()
+        pass
+        # print('mousepressed caused error in: '+str(screens[index])+' --- ignored\n'+str(e))
+        # traceback.print_exc()
             
 def mouseClicked():
     global screens
     try:
         screens[index].mouseClicked()
     except Exception as e:
-        print('mouseClicked caused error in: '+str(screens[index])+' --- ignored\n'+str(e))
-        traceback.print_exc()
+        pass
+        # print('mouseClicked caused error in: '+str(screens[index])+' --- ignored\n'+str(e))
+        # traceback.print_exc()
 
 # def mouseClicked():
 #     global screens
@@ -96,8 +149,9 @@ def mouseReleased():
     try:
         screens[index].mouseReleased()
     except Exception, e:
-        print('mousereleased caused error in: '+str(screens[index])+' --- ignored'+str(e))
-        traceback.print_exc()
+        pass
+        # print('mousereleased caused error in: '+str(screens[index])+' --- ignored'+str(e))
+        # traceback.print_exc()
             
             
 def keyPressed():
@@ -108,5 +162,6 @@ def keyPressed():
         screens[index].keyPressed()
             
     except Exception as e:
-        print('keyPressed caused error in: '+str(screens[index])+' --- ignored\n'+str(e))    
-        traceback.print_exc()
+        pass
+        # print('keyPressed caused error in: '+str(screens[index])+' --- ignored\n'+str(e))    
+        # traceback.print_exc()

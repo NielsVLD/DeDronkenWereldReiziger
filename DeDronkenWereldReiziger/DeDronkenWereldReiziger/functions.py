@@ -11,6 +11,7 @@ userName = ''
 # -----------------------------------------        
 
 gameData = {}
+qanda={}
 userNames = []
 test = None
 counter = 0
@@ -97,5 +98,9 @@ def onRect(x, y, width, height):
     return(mouseX >= x and mouseX <= x + width and mouseY >= y and mouseY <= y + height)
 
 
-
+def getQAndAJson():
+    with open('qanda.json') as json_file:
+        qanda = json.load(json_file)
+        
+    return qanda
     

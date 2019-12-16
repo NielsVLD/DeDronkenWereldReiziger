@@ -1,17 +1,19 @@
-ingevuldAntwoord = False
+ingevuldAntwoord = "Geen"
 touched = False
 img = None
 img1 = None
 shown=True
 firstTime = True
+vraag ="test"
 def setup():
-    global img,img1
+    global img,img1,ingevuldAntwoord
     size(1000,800)
     img = loadImage('checked.png')
     img1 = loadImage('notchecked.png')
+    ingevuldAntwoord='Geen'
 
 def draw():
-    global ingevuldAntwoord,firstTime
+    global ingevuldAntwoord,firstTime,vraag
     background(51)
     
     fill(37, 107,133)
@@ -23,7 +25,7 @@ def draw():
     textAlign(CENTER)
     textSize(20)
     fill(255)
-    text("Hawaii behoort ook tot Oceanie",width/2,63)
+    text(vraag,width/2,63)
     text("Vraag:",width/2,30)
     line(0,37, width, 37)
     text("Antwoord:",width/2,120)
@@ -33,7 +35,7 @@ def draw():
             
     fill(255)
     text("Waar",width/4,210)
-    if not ingevuldAntwoord:
+    if ingevuldAntwoord=='Waar':
         fill(37, 107,133)
         
     else:
@@ -41,18 +43,18 @@ def draw():
             
     circle(180, 200, 30)
     imageMode(CENTER)
-    if ingevuldAntwoord and not firstTime:
+    if ingevuldAntwoord=='Waar' and not firstTime:
         image(img,180, 200,47.5,40)
     else:
         image(img1,180, 200,40,40)
     fill(255)
     text("Niet waar",width/3.6,260)
-    if ingevuldAntwoord:
+    if ingevuldAntwoord=='Waar':
         fill(37, 107,133)
     else:
         fill(255)   
     circle(180, 250, 30)
-    if not  ingevuldAntwoord and not firstTime:
+    if not  ingevuldAntwoord=='Waar' and not firstTime:
         image(img,180, 250,47.5,40)
     else:
         image(img1,180, 250,40,40)
@@ -76,13 +78,22 @@ def mousePressed():
     global ingevuldAntwoord, touched, firstTime, shown
     if isMouseWithinRect(190-20, 200-15,30,30):
         firstTime = False
-        ingevuldAntwoord=True
+        ingevuldAntwoord='Waar'
     elif isMouseWithinRect(180-15, 250-15,30,30):
         firstTime = False
-        ingevuldAntwoord=False
+        ingevuldAntwoord='Niet waar'
 
     
     if isMouseWithinRect((width/2)-75,height-100,150,50):
         # nextPage
         print("to next page ingevuld antwoord: ",ingevuldAntwoord)
+        if not firstTime:
+            firstTime=True
+            shown=False
+def keyPressed():
+    global firstTime, shown,ingevuldAntwoord
+    
+    if not firstTime and key == ENTER:
+        firstTime=True
         shown=False
+        print("to next page ingevuld antwoord: ",ingevuldAntwoord)
