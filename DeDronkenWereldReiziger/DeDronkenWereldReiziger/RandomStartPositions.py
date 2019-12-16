@@ -6,7 +6,7 @@ import time
 shown=True
 eventAllowed=False
 
-spelers=["joost","Kees", "henk", "NAME"]
+spelers=["", "", "", ""]
 allStartPositions=["Oceanie","Europa","Azie","Noord-Amerika","Zuid-Amerika","Afrika"]
 spelerStartPositions=[]
 images={}
@@ -103,7 +103,7 @@ def drawPlayerAndPosition():
             elif i==2:                
                 drawContinents(spelerStartPos,images[spelerStartPos],  ((width/4)), height-(height/4))
                 text(spelerStartPos, ((width/4)-100), height-(height/4)-170)
-            elif i==3:            
+            elif i==3:       
                 drawContinents(spelerStartPos,images[spelerStartPos], (width-(width/4)), height-(height/4))
                 text(spelerStartPos, (width-(width/4)+100), height-(height/4)-170)
         textSize(14)
