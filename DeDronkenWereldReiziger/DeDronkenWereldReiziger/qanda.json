@@ -1,0 +1,112 @@
+[{
+        "q_a_0": {
+            "question": "EU is de afkorting van Europa",
+            "answer": 2,
+            "points": 1,
+            "answers": {
+                "1": "Waar",
+                "2": "Niet waar"
+            }
+        }
+    },
+    {
+        "q_a_1": {
+            "question": "In IJsland leven helemaal geen muggen",
+            "answer": 1,
+            "points": 1,
+            "answers": {
+                "1": "Waar",
+                "2": "Niet waar"
+            }
+        }
+    },
+    {
+        "q_a_2": {
+            "question": "Osama Bin Laden was een Amerikaanse spion",
+            "answer": 1,
+            "points": 1,
+            "answers": {
+                "1": "Waar",
+                "2": "Niet waar"
+            }
+        }
+    },
+    {
+        "q_a_3": {
+            "question": "Het is in Thailand verboden je huis te verlaten zonder ondergoed aan",
+            "answer": 1,
+            "points": 1,
+            "answers": {
+                "1": "Waar",
+                "2": "Niet waar"
+            }
+        }
+    },
+    {
+        "q_a_4": {
+            "question": "De Cubaanse mojito was oorspronkelijk bedoeld als medicijn",
+            "answer": 1,
+            "points": 1,
+            "answers": {
+                "1": "Waar",
+                "2": "Niet waar"
+            }
+        }
+    },
+    {
+        "q_a_5": {
+            "question": "In Australië wonen ongeveer 30 miljoen mensen",
+            "answer": 2,
+            "points": 1,
+            "answers": {
+                "1": "Waar",
+                "2": "Niet waar"
+            }
+        }
+    },
+    {
+        "q_a_6": {
+            "question": "Antarctica is ontdekt door Harry Cook",
+            "answer": 2,
+            "points": 1,
+            "answers": {
+                "1": "Waar",
+                "2": "Niet waar"
+            }
+        }
+    },
+    {
+        "q_a_7": {
+            "question": "De Nijl is na de Amazone de langste rivier op aarde",
+            "answer": 2,
+            "points": 1,
+            "answers": {
+                "1": "Waar",
+                "2": "Niet waar"
+            }
+        }
+    },
+    {
+        "q_a_8": {
+            "question": "In nieuw zeeland rijden ze aan de rechterkant van de weg",
+            "answer": 2,
+            "points": 1,
+            "answers": {
+                "1": "Waar",
+                "2": "Niet waar"
+            }
+        }
+    },
+    {
+        "q_a_9": {
+            "question": "De officiële munt van Uruguay is Peso",
+            "answer": 2,
+            "points": 1,
+            "answers": {
+                "1": "Waar",
+                "2": "Niet waar"
+            }
+        }
+    }
+
+]
