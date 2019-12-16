@@ -80,7 +80,7 @@ def drawPlayerAndPosition():
                 text(speler + " heeft:", (width-(width/4)), (height/4)- 170)
             elif i==2:
                 text(speler + " heeft:", ((width/4)), height-(height/4)+ 170)
-            elif i==3:
+            elif i==3 and len(spelers) == 4:
                 text(speler + " heeft:", (width-(width/4)), height-(height/4) + 170)
     textSize(14)
     for i,spelerStartPos in enumerate(spelerStartPositions):
@@ -103,7 +103,7 @@ def drawPlayerAndPosition():
             elif i==2:                
                 drawContinents(spelerStartPos,images[spelerStartPos],  ((width/4)), height-(height/4))
                 text(spelerStartPos, ((width/4)-100), height-(height/4)-170)
-            elif i==3:       
+            elif i==3 and len(spelers) == 4:       
                 drawContinents(spelerStartPos,images[spelerStartPos], (width-(width/4)), height-(height/4))
                 text(spelerStartPos, (width-(width/4)+100), height-(height/4)-170)
         textSize(14)
