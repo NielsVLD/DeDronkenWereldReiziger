@@ -164,7 +164,6 @@ def keyPressed():
                 gameData['users'][i] = functions.createUser(gameData['users'][i])
 
         if(len(gameData['users'][i]) >= 1):
-            print(gameData['users'][i])
             users += 1
             gameData['errorMessage2'] = False
             
@@ -176,17 +175,13 @@ def keyPressed():
             
             if(int(gameData['amountOfUsers']) > int(users)):
                 gameData['errorMessage2'] = 'U moet meer spelers aanmaken'
-                print('true meer')
             else:
                 gameData['errorMessage2'] = False
-                print('false meer')
         
                 if(int(gameData['amountOfUsers']) < users):
                     gameData['errorMessage2'] = 'U moet minder spelers aanmaken'
-                    print('true minder')
                 else:
                     gameData['errorMessage2'] = False
-                    print('false minder')
                     
                     if(gameData['yPlayer'][0] == False and gameData['yPlayer'][1] == False and gameData['yPlayer'][2] == False and gameData['yPlayer'][3] == False):
                         gameData['errorMessage2'] = 'kies de jongste speler!'
