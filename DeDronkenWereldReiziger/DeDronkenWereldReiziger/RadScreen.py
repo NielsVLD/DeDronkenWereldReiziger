@@ -9,17 +9,17 @@ speed=random(0.1,1.9)
 # ,"boe","schaap","test","test1"
 drinkActions=["1 shot","2 shots","iedereen 1 shot","1 atje","iedereen atten","2 shotjes","4 slokken","1 atje","1 slok","2 atjes","2 shots","3 slokken","8 slokken","5 slokken"]
 radHeight=650
-
+allowedToLeaveScreen=False
 def setup():
     size(1000,800)
     print("now on radScreen")
     
 def draw():
-    global rotation,rotating,speed,radHeight,answeredCorrect
+    global rotation,rotating,speed,radHeight,answeredCorrect,allowedToLeaveScreen
     
     background(51)
     textSize(25)
-    if overCircle(width/2,height/2,radHeight):
+    if overCircle(width/2,height/2,radHeight) or isMouseWithinRect((width)-175,height-100,150,50):
         cursor(HAND)
         textAlign(CENTER,CENTER)
         text("Klik om te draaien!",width/2,25)
@@ -81,6 +81,15 @@ def draw():
     pop()
     drawArrow()
     rotationHandler()
+    allowedToLeaveScreen=True
+    stroke(255,188,0)
+    strokeWeight(2)
+    fill(37, 107,133)
+    rect((width)-175,height-100,150,50)
+    fill(255)
+    textAlign(CENTER,CENTER)
+    text("Volgende",(width-100),height-75,)
+
     
 def rotationHandler():
     global rotating,rotation,speed
@@ -133,8 +142,15 @@ def drawLegs():
 def mouseReleased():
     global rotating,radHeight
     if overCircle(width/2,height/2,radHeight) and not rotating:
-        rotating=not rotating
-            
+        rotating=not rotating    
+    
+def mousePressed():
+    global shown, allowedToLeaveScreen
+    if isMouseWithinRect((width)-175,height-100,150,50) and allowedToLeaveScreen:
+        # nextPage
+        shown=False
+def isMouseWithinRect(x,y,w,h):
+    return (x < mouseX < x + w and y < mouseY < y + h)            
 def keyPressed():
     global rotating, shown
     if key==ENTER:
