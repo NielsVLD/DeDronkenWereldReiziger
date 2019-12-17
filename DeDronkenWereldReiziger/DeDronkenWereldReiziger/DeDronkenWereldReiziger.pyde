@@ -1,5 +1,6 @@
 import StartScreen,CreateUsers, RandomStartPositions,QuestionScreen,AnswerScreen,RadScreen, functions
 import traceback
+import random as rdm
 screens=[]
 goBack=False
 gameData={}
@@ -17,9 +18,12 @@ pageSetup=False
 def getRandomQuestion():
     global qanda
     try:
-        lengthQanda = len(qanda)
-        rdmInt = int(random(0,lengthQanda))
-        return qanda[rdmInt]
+        if len(qanda)==0:
+            qanda = functions.getQAndAJson()
+            qanda.shuffle()
+        item =rdm.choice(qanda)
+        qanda.remove(item)
+        return item
     except Exception, e:
         print("could not get question",e)
         
