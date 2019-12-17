@@ -58,17 +58,19 @@ def draw():
     # a rectangle where the user can check if the alchol is allowed or not
     functions.createRectWithColor(660, 680, 50, 50, defaultColor)
     
+    functions.createRectWithColor(width/2 - 100, 700, 200, 50, defaultColor)
+    fill(255)
+    text('Volgende', width/2, 730)
+    
     # showing the default image which is not checked
-    imageMode(CENTER)
-    image(imageNotChecked, width / 1.46, height / 1.13, 65, 65)
+    functions.showImage(imageNotChecked, width / 1.46, height / 1.22)
     
     fill(255)
     text('Klik het vakje aan om de drank\n variant te spelen', width/2.1, 700)
     
     # if alcoholicCheck is true the box will be checked
     if(gameData['alcoholicCheck']):
-        imageMode(CENTER)
-        image(imageChecked, width / 1.46, height / 1.13, 65, 65)
+        functions.showImage(imageChecked, width / 1.46, height / 1.22)
         
     functions.blink(defaultValueBlink, 410, defaultValueBlink, 440)
     
@@ -110,7 +112,12 @@ def draw():
         cursor(ARROW)
                 
 def mouseClicked():
-    global gameData, defaultValueBlink
+    global gameData, defaultValueBlink, screens
+    
+    createAmountOfUsers = functions.onRect(width/2 - 100, 700, 200, 50)
+    
+    if(createAmountOfUsers and gameData['amountOfUsers'] != False):
+        screens['secondScreen'] = True
     
     alcoholicVariant = functions.onRect(660, 680, 50, 50)
         
