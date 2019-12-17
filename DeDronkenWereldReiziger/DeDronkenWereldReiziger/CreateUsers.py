@@ -66,7 +66,7 @@ def draw():
     functions.showImage(imageNotChecked, width / 1.46, height / 1.22)
     
     fill(255)
-    text('Klik het vakje aan om de drank\n variant te spelen', width/2.1, 700)
+    text('Klik het vakje aan om de drank\n variant te spelen', width/2.1, height/ 1.24)
     
     # if alcoholicCheck is true the box will be checked
     if(gameData['alcoholicCheck']):
@@ -205,13 +205,3 @@ def keyPressed():
                         if(int(gameData['amountOfUsers']) == users):
                             screens['thirdScreen'] = True
                             shown = False
-                            
-def isMouseWithinRect(x,y,w,h):
-    return (x < mouseX < x + w and y < mouseY < y + h)
-
-def mousePressed():    
-    global shown    
-    if isMouseWithinRect((width/2)+300,height-98,150,54):
-    
-        # nextPage
-        shown=False
