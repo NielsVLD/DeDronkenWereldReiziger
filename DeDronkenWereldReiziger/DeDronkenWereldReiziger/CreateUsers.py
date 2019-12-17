@@ -77,7 +77,7 @@ def draw():
         text(gameData['amountOfUsers'], width/2, 430)
    
     if(gameData['errorMessage'] != False):     
-        text(gameData['errorMessage'], width/2, 170)
+        text(gameData['errorMessage'], width/2, 500)
         
     if(screens['secondScreen']):
         functions.clearPage()
@@ -87,7 +87,7 @@ def draw():
         text('Jongste speler', 790, 125)
         
         if(gameData['errorMessage2'] != False):     
-            text(gameData['errorMessage2'], width/2, 500)
+            text(gameData['errorMessage2'], width/2, 170)
         
         for i in range(4):
             functions.createRectWithColor(300, 200 + (150 * i), 400, 50, defaultColor)
