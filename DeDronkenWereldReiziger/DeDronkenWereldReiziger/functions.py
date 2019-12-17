@@ -9,7 +9,7 @@ userName = ''
 # for the json crud
 # https://stackabuse.com/reading-and-writing-json-to-a-file-in-python/    
 # -----------------------------------------        
-
+ 
 gameData = {}
 qanda={}
 userNames = []
@@ -45,18 +45,29 @@ def clearPage():
     background(51)
     
 def amountOfUsers():
-    amountOfUsers = None
+    amountOfUsers = 0
     
     if(key == BACKSPACE):
-        amountOfUsers = None
-        return amountOfUsers
-    
+        amountOfUsers = 0
+        
     if(key == '2' or key == '3' or key == '4'):
         amountOfUsers = key
-        return amountOfUsers
+        
+    return amountOfUsers
+
+def PositionBlink(input, maxLengthInput):
+    global positionBlink
+    
+    if(input == 0):
+        positionBlink = 500
     else:
-        amountOfUsers = 'Dit is geen 2, 3 of 4'
-        return amountOfUsers
+        if(input == '2' or input == '3' or input == '4'):
+            positionBlink = 500
+            positionBlink = positionBlink + 7
+        else:
+            positionBlink = positionBlink - 7
+    
+    return positionBlink
     
 def createUsers():
     global test, gameData, counter
@@ -71,19 +82,85 @@ def createUsers():
     rect(width/4, height/ 5, 300, 80)
     fill(37, 107,133)
     
-def createUser():
+def createUser(inputWord):
     global userName
     
-    if (int(ord(key)) == 8):
-        if userName!=None: 
-            userName = userName[:-1]
-        return userName
-    else:
-        if userName==None: 
-            userName=''
-        userName = userName + str(key)          
-        return userName
+    if(key == ENTER):
+        inputWord == ''
+        return inputWord
     
+    if (key != ENTER):
+        if (int(ord(key)) == 8):
+            inputWord = inputWord[:-1]
+            return inputWord
+        else:
+            inputWord = inputWord + str(key)      
+            return inputWord
+
+def loopThroughBlink(InputWord):
+    global x
+    
+    whileInputWord = str(InputWord)
+    totalLenghtInputWord = len(whileInputWord)
+    
+    x = 500
+    
+    i = 0
+    while(totalLenghtInputWord >= i):
+        lastLetterOfString = whileInputWord[-1:]
+        
+        # dit zijn de letters i, j, l
+        if(lastLetterOfString == 'i' or lastLetterOfString == 'j' or lastLetterOfString == 'l'):
+            x = int(x) + 3
+        # dit zijn de letters w & m & e
+        elif(lastLetterOfString == 'w' or lastLetterOfString == 'm' or lastLetterOfString == 'e'):
+            x = int(x) + 7
+        # dit zijn alle overige letters van het alphabet
+        else:
+            x = x + 5
+        
+        whileInputWord = whileInputWord[:-1]
+        i += 1
+    return x
+    
+def pushBlink(InputWord):
+    global x
+    
+    # alleen kleine letters worden gecheckt
+    # als er backspace gedaan wordt dan wordt er wat afgehaald van de positie 
+    if(len(InputWord) == 0):
+        x = 500
+    
+    if(key != ENTER):
+        
+        if(int(ord(key)) == 8):
+            
+            if(len(InputWord) >= 1):
+                lastLetterOfString =  (InputWord[-1:])
+                
+                # dit zijn de letters i, j, l
+                if(int(ord(lastLetterOfString)) == 105 or int(ord(lastLetterOfString)) == 108 or int(ord(lastLetterOfString)) == 106):
+                    x = int(x) - 3
+                # dit zijn de letters w & m & e
+                elif(int(ord(lastLetterOfString)) == 109 or int(ord(lastLetterOfString)) == 119 or int(ord(lastLetterOfString)) == 101):
+                    x = int(x) - 7
+                # dit zijn alle overige letters van het alphabet
+                else:
+                    x = int(x) - 5
+        else:        
+            # dit zijn de letters i, j, l
+            if(int(ord(key)) == 105 or int(ord(key)) == 108 or int(ord(key)) == 106):
+                x = int(x) + 3
+            # dit zijn de letters w & m
+            elif(int(ord(key)) == 109 or int(ord(key)) == 119 or int(ord(key)) == 101):
+                x = int(x) + 7
+            # dit zijn alle overige letters van het alphabet
+            else:
+                x = x + 5
+                
+    return x    
+
+
 def clearUserInput():
     global userName
     userName = None
