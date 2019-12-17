@@ -19,6 +19,7 @@ colorsToChoose = [color(255, 0, 0), color(0, 255, 0),color(0, 0, 255),color(255,
 
 screens = {}
 screens['secondScreen'] = False
+screens['thirdScreen'] = False
 
 defaultValueBlink = 500
 
@@ -26,6 +27,8 @@ imgWidth=60
 imgHeight=50
 
 shown = True
+
+goToStartPositionScreen = False
 
 def setup():   
     global imageChecked, imageNotChecked
@@ -56,7 +59,7 @@ def draw():
     functions.createRectWithColor(width/2 - 200, 400, 400, 50, defaultColor)
     
     # a rectangle where the user can check if the alchol is allowed or not
-    functions.createRectWithColor(660, 680, 50, 50, defaultColor)
+    functions.createRectWithColor(660, 620, 50, 50, defaultColor)
     
     functions.createRectWithColor(width/2 - 100, 700, 200, 50, defaultColor)
     fill(255)
@@ -83,6 +86,9 @@ def draw():
     if(screens['secondScreen']):
         functions.clearPage()
         
+        functions.createRectWithColor(width/2 - 100, 725, 200, 50, defaultColor)
+        text('Volgende', width/2, 755)
+        
         text('Kleur', 200, 125)
         text('Naam', width/2, 125)
         text('Jongste speler', 790, 125)
@@ -101,31 +107,30 @@ def draw():
                 functions.showImage(imageChecked, 760+(60/2), 200+(50/2)+(i*150))
             else:
                 functions.showImage(imageNotChecked, 761+(60/2), 200+(50/2)+(i*150))
-    fill(37, 107,133)
-    rect((width/2)+300,height-100,150,50)
-    fill(255)
-    textAlign(CENTER,CENTER)
-    text("Volgende",(width/2)+380,height-75,)
-    if isMouseWithinRect((width/2)+300,height-98,150,54):
-        cursor(HAND)
-    else:
-        cursor(ARROW)
                 
 def mouseClicked():
-    global gameData, defaultValueBlink, screens
+    global gameData, defaultValueBlink, screens, shown, goToStartPositionScreen
+    
+    if(functions.onRect(width/2 - 100, 725, 200, 50)):
+        goToStartPositionScreen = True
+        keyPressed()
+        if(data['errorMessage2']):
+            shown = False
+    else:
+        test = False
     
     createAmountOfUsers = functions.onRect(width/2 - 100, 700, 200, 50)
     
     if(createAmountOfUsers and gameData['amountOfUsers'] != False):
         screens['secondScreen'] = True
     
-    alcoholicVariant = functions.onRect(660, 680, 50, 50)
+    alcoholicVariant = functions.onRect(660, 620, 50, 50)
         
     if(alcoholicVariant):
         gameData['alcoholicCheck'] = not gameData['alcoholicCheck']
         
     for i in range(len(gameData['blink'])):
-        if functions.onRect(300, 200 + (150 * i), 400, 50,) and screens['secondScreen']:
+        if functions.onRect(300, 200 + (150 * i), 400, 50,) and screens['secondScreen'] and test == False:
             gameData['blink'][i] = True
             
             functions.clearUserInput()
@@ -150,8 +155,13 @@ def mouseClicked():
         else:
             gameData['yPlayer'][i]= False
             
+        
+       
+            
 def keyPressed():
-    global gameData, defaultValueBlink, shown
+    
+
+    global gameData, defaultValueBlink, shown, screens
     
     users = 0
     
@@ -181,7 +191,7 @@ def keyPressed():
             users += 1
             gameData['errorMessage2'] = False
             
-    if(key == ENTER and screens['secondScreen']):    
+    if(key == ENTER and screens['secondScreen'] or goToStartPositionScreen):   
         if(users == 0):
             gameData['errorMessage2'] = 'Vul eerst het formulier in voordat u op verzenden drukt'
         else:
@@ -205,3 +215,7 @@ def keyPressed():
                         if(int(gameData['amountOfUsers']) == users):
                             screens['thirdScreen'] = True
                             shown = False
+                            print(shown)
+                            
+                            
+                            
