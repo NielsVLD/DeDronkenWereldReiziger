@@ -13,8 +13,6 @@ userName = ''
 gameData = {}
 qanda={}
 userNames = []
-test = None
-counter = 0
 
 def getJson():
     with open('gameData.txt') as json_file:
@@ -70,20 +68,7 @@ def PositionBlink(input, maxLengthInput):
             positionBlink = positionBlink - 7
     
     return positionBlink
-    
-def createUsers():
-    global test, gameData, counter
-
-    gameData = getJson()
-    
-    i = 1
-
-    text('Vul hieronder in uw naam speler ' + str(i), width/2, 20)
-    textAlign(CENTER)
-    
-    rect(width/4, height/ 5, 300, 80)
-    fill(37, 107,133)
-    
+        
 def createUser(inputWord):
     global userName
     
