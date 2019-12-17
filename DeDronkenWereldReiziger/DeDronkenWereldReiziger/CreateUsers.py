@@ -99,6 +99,15 @@ def draw():
                 functions.showImage(imageChecked, 760+(60/2), 200+(50/2)+(i*150))
             else:
                 functions.showImage(imageNotChecked, 761+(60/2), 200+(50/2)+(i*150))
+    fill(37, 107,133)
+    rect((width/2)+300,height-100,150,50)
+    fill(255)
+    textAlign(CENTER,CENTER)
+    text("Volgende",(width/2)+380,height-75,)
+    if isMouseWithinRect((width/2)+300,height-98,150,54):
+        cursor(HAND)
+    else:
+        cursor(ARROW)
                 
 def mouseClicked():
     global gameData, defaultValueBlink
@@ -189,3 +198,13 @@ def keyPressed():
                         if(int(gameData['amountOfUsers']) == users):
                             screens['thirdScreen'] = True
                             shown = False
+                            
+def isMouseWithinRect(x,y,w,h):
+    return (x < mouseX < x + w and y < mouseY < y + h)
+
+def mousePressed():    
+    global shown    
+    if isMouseWithinRect((width/2)+300,height-98,150,54):
+    
+        # nextPage
+        shown=False
