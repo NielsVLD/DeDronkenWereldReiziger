@@ -50,7 +50,7 @@ def draw():
     textSize(20)
     fill(255)
 
-    text("Welkom bij ons digitale component \n Met hoeveel spelers wilt u spelen? \n kies uit 2, 3 of 4 spelers", width / 2, 300)
+    text("Welkom bij De Dronken Wereld Reiziger \n Met hoeveel spelers wilt u spelen? \n kies uit 2, 3 of 4 spelers", width / 2, 300)
 
     # a rectangle where the user input is shown
     functions.createRectWithColor(width/2 - 200, 400, 400, 50, defaultColor)
