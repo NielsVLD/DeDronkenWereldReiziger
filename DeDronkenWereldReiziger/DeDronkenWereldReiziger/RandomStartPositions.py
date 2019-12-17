@@ -1,4 +1,4 @@
-#Wessel van leeuwen, 0986664, projectrgroep 3
+#Wessel van leeuwen, 0986664, projectgroep 3
 import random
 import time
 
