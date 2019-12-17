@@ -140,7 +140,7 @@ def keyPressed():
     
     users = 0
     
-    if(gameData['amountOfUsers'] != False):
+    if(key != ENTER):
         
         gameData['amountOfUsers'] = functions.amountOfUsers()
         defaultValueBlink = functions.PositionBlink(gameData['amountOfUsers'], 1)
