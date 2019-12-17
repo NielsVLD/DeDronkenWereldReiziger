@@ -141,3 +141,8 @@ def mousePressed():
 
 def onRect(x, y, w, h):
     return(mouseX >= x and mouseX <= x + w and mouseY >= y and mouseY <= y + h)
+
+def keyPressed():
+    global shown
+    if key==ENTER:
+        shown=False
