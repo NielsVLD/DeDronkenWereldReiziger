@@ -77,7 +77,7 @@ def draw():
         text(gameData['amountOfUsers'], width/2, 430)
    
     if(gameData['errorMessage'] != False):     
-        text(gameData['errorMessage'], width/2, 500)
+        text(gameData['errorMessage'], width/2, 170)
         
     if(screens['secondScreen']):
         functions.clearPage()
