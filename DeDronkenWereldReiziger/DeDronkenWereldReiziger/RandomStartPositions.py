@@ -57,9 +57,10 @@ def draw():
         fill(27, 107, 133)
     textSize(15)
     drawPlayerAndPosition()
-    textSize(14)
+    textSize(20)
     fill(255)
-    text("Next",width/2,height-100)
+    text("Volgende",width/2,height-100)
+    textSize(14)
     
 def drawPlayerAndPosition():
     global images
