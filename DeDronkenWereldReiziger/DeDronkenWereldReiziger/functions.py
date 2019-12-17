@@ -52,6 +52,8 @@ def amountOfUsers():
         
     if(key == '2' or key == '3' or key == '4'):
         amountOfUsers = key
+    else:
+        amountOfUsers = 0
         
     return amountOfUsers
 
