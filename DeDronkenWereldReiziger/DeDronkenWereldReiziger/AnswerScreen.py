@@ -1,4 +1,4 @@
-# Voor navigatie en ontvangen van events als keypressed
+# Voor navigatie
 shown=True
 
 vraag = "Hawaii behoort ook tot Oceanie"
@@ -41,8 +41,27 @@ def draw():
         else:
             fill(0,200,0)
             text("+"+str(punten)+" punten",width/2,480)
-        
+    fill(37, 107,133)
+    rect((width/2)-75,height-100,150,50)
+    fill(255)
+    textAlign(CENTER,CENTER)
+    text("Volgende",(width/2),height-75,)
+    if isMouseWithinRect((width/2)-75,height-100,150,50):
+        cursor(HAND)
+    else:
+        cursor(ARROW)
 def keyPressed():
     global shown
     if key==ENTER:
         shown=False
+        
+def mousePressed():    
+    global shown    
+    if isMouseWithinRect((width/2)-75,height-100,150,50):
+    
+        # nextPage
+        shown=False
+        
+def isMouseWithinRect(x,y,w,h):
+    return (x < mouseX < x + w and y < mouseY < y + h)
+ 
