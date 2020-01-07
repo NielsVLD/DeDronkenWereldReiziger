@@ -1,3 +1,4 @@
+# variables 
 ingevuldAntwoord = "Geen"
 touched = False
 img = None
@@ -5,6 +6,7 @@ img1 = None
 shown=True
 firstTime = True
 vraag ="test"
+
 def setup():
     global img,img1,ingevuldAntwoord
     size(1000,800)
@@ -14,14 +16,13 @@ def setup():
 
 def draw():
     global ingevuldAntwoord,firstTime,vraag
+# achtergrond 
     background(51)
-    
-    fill(37, 107,133)
-    # fill(0)
+    fill(51)
     stroke(255,188,0)
     strokeWeight(2)
     rect(0,0,width,height)
-
+#Tekst vraag en antwoord
     textAlign(CENTER)
     textSize(20)
     fill(255)
@@ -30,18 +31,17 @@ def draw():
     line(0,37, width, 37)
     text("Antwoord:",width/2,120)
     line(0,127, width, 127)
-    
-    textSize(23)
-            
+
+    textSize(23)    
     fill(255)
     text("Waar",width/4,210)
-    if ingevuldAntwoord=='Waar':
-        fill(37, 107,133)
-        
-    else:
-        fill(255)
-            
-    circle(180, 200, 30)
+
+    # if ingevuldAntwoord=='Waar':
+    #     fill(37, 107,133)
+    # else:
+    #     fill(255)
+    # circle(180, 200, 30)
+#vinkje 
     imageMode(CENTER)
     if ingevuldAntwoord=='Waar' and not firstTime:
         image(img,180, 200,47.5,40)
@@ -49,15 +49,18 @@ def draw():
         image(img1,180, 200,40,40)
     fill(255)
     text("Niet waar",width/3.6,260)
-    if ingevuldAntwoord=='Waar':
-        fill(37, 107,133)
-    else:
-        fill(255)   
-    circle(180, 250, 30)
+    
+    # if ingevuldAntwoord=='Waar':
+    #     fill(37, 107,133)
+    # else:
+    #     fill(255)   
+    # circle(180, 250, 30)
+    
     if not  ingevuldAntwoord=='Waar' and not firstTime:
         image(img,180, 250,47.5,40)
     else:
         image(img1,180, 250,40,40)
+#Controleer box
     fill(37, 107,133)
     rect((width/2)-75,height-100,150,50)
     fill(255)
