@@ -12,7 +12,7 @@ def setup():
     
 def draw():
     background(255)
-    fill(37, 107,133)
+    fill(51)
     stroke(255,188,0)
     strokeWeight(2)
     rect(0,0,width, height)
