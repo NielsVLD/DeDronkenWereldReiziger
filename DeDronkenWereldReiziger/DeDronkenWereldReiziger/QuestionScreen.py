@@ -60,6 +60,7 @@ def draw():
         image(img,180, 250,47.5,40)
     else:
         image(img1,180, 250,40,40)
+#Controleer box
     fill(37, 107,133)
     rect((width/2)-75,height-100,150,50)
     fill(255)
