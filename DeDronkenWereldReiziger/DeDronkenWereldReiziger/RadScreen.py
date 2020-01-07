@@ -111,7 +111,7 @@ def rotationHandler():
             speed-=0.01
         else:
             rotating=False
-            speed=random(0.1,1.9)
+            speed=random(0.3,1.9)
             
 
 # drawing ui        
