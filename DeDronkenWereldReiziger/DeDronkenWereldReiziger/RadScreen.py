@@ -1,15 +1,17 @@
-#Reindert
+# Reindert
+# 0990526
 
-# Voor navigatie en ontvangen van events als keypressed
+# Voor navigatie
 shown=True
 answeredCorrect=False
 rotation = 2.0
 rotating=False
 speed=random(0.1,1.9)
-# ,"boe","schaap","test","test1"
+# list of actions
 drinkActions=["1 shot","2 shots","iedereen 1 shot","1 atje","iedereen atten","2 shotjes","4 slokken","1 atje","1 slok","2 atjes","2 shots","3 slokken","8 slokken","5 slokken"]
-radHeight=650
+radHeight=600
 allowedToLeaveScreen=False
+
 def setup():
     size(1000,800)
     print("now on radScreen")
@@ -19,26 +21,31 @@ def draw():
     
     background(51)
     textSize(25)
+    textAlign(CENTER,CENTER)
+    
+    
+    #show hand cursor when hovering over buttons and rad
     if overCircle(width/2,height/2,radHeight) or isMouseWithinRect((width)-175,height-100,150,50):
         cursor(HAND)
-        textAlign(CENTER,CENTER)
-        text("Klik om te draaien!",width/2,25)
+        fill(255,188,0)
     else:
         cursor(ARROW)
-        if answeredCorrect:
-            textAlign(CENTER,CENTER)
-            text("De vraag was goed beantwoord: Deel uit!",width/2,25)
-        else:
-            textAlign(CENTER,CENTER)
-            text("De vraag was fout beantwoord: Drink zelf!",width/2,25)
+        fill(255)
+    text("Klik op het rad om te draaien!",width/2,60)
+    fill(255)
+    if answeredCorrect:
+        textAlign(CENTER,CENTER)
+        text("De vraag was goed beantwoord: Deel uit!",width/2,25)
+    else:
+        textAlign(CENTER,CENTER)
+        text("De vraag was fout beantwoord: Drink zelf!",width/2,25)
     push()
     translate(width/2, height/2)
     drawLegs()
-    
+    #rotates the canvas 
     rotate(PI*rotation)
     drawRad(0,0,radHeight)
     fill(51)
-    # rect(-25, -25, 50, 50)
     # % per item
     piecePercentage= 100.0/(len(drinkActions)*2)
     # old % + the new item %
@@ -89,6 +96,7 @@ def draw():
     fill(255)
     textAlign(CENTER,CENTER)
     text("Volgende",(width-100),height-75,)
+
 
     
 def rotationHandler():
@@ -142,6 +150,7 @@ def drawLegs():
 def mouseReleased():
     global rotating,radHeight
     if overCircle(width/2,height/2,radHeight) and not rotating:
+        print("rotate rad")
         rotating=not rotating    
     
 def mousePressed():
@@ -152,9 +161,10 @@ def mousePressed():
 def isMouseWithinRect(x,y,w,h):
     return (x < mouseX < x + w and y < mouseY < y + h)            
 def keyPressed():
-    global rotating, shown
+    global rotating, shown,thisScreenIsBeingDrawn
     if key==ENTER:
         shown=False
+        thisScreenIsBeingDrawn=False
     if key == TAB and not rotating:
         rotating=not rotating
         
