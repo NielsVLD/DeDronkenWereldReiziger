@@ -65,14 +65,18 @@ def draw():
         text(str(gameData['users'][i]), width/2, 230+(i*150))
         functions.createRectWithColor(180, 200+(i*150), 50, 50, colorsToChoose[i])
         if gameData['yPlayer'][i]:
-            functions.showImage(imageChecked, 760+(60/2), 200+(50/2)+(i*150))
+            functions.showImage(imageChecked, 760+(imgWidth/2), 200+(imgHeight/2)+(i*150))
         else:
-            functions.showImage(imageNotChecked, 761+(60/2), 200+(50/2)+(i*150))
+            functions.showImage(imageNotChecked, 761+(imgWidth/2), 200+(imgHeight/2)+(i*150))
             
     functions.createRectWithColor(width/2 - 100, 725, 200, 50, defaultColor)
     text('Volgende', width/2, 755)
+    if functions.onRect(750, 185, 80,80) or functions.onRect(750, 185+(1*150), 80,80) or functions.onRect(750, 185+(2*150), 80,80)or functions.onRect(750, 185+(3*150), 80,80):
+        cursor(HAND)
+    else:
+        cursor(ARROW)
                 
-def mouseClicked():
+def mousePressed():
     global gameData, defaultValueBlink, shown, players
     
     for i in range(len(gameData['blink'])):
@@ -89,7 +93,8 @@ def mouseClicked():
             gameData['blink'][i]= False   
             
     for i in range(len(gameData['yPlayer'])):
-        if functions.onRect(760,  200+(i*150), imgWidth,imgHeight):
+        if functions.onRect(750, 185+(i*150), 80,80):
+            print('maak gebruiker aan!')
             if(gameData['users'][i] == ''):
                 gameData['errorMessage2'] = 'Naam mag niet leeg zijn'
                 gameData['yPlayer'][i]= False
