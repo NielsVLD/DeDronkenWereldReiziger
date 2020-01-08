@@ -7,9 +7,6 @@ imageNotChecked = None
 defaultColor = color(37, 107, 133)
 
 gameData = {}
-# gameData['alcoholicCheck'] = False
-# gameData['amountOfUsers'] = False
-# gameData['errorMessage'] = False
 gameData['errorMessage2'] = False
 gameData['yPlayer'] = [False, False, False, False]
 gameData['users'] = ['', '', '', '']
@@ -26,7 +23,7 @@ shown = True
 
 jsonData = []
 
-goToStartPositionScreen = False
+players = 0
 
 def setup():   
     global imageChecked, imageNotChecked, jsonData
@@ -52,8 +49,6 @@ def draw():
     # text size and color for the rest of this project
     textSize(20)
     fill(255)
-        
-    
     
     text('Kleur', 200, 125)
     text('Naam', width/2, 125)
@@ -78,17 +73,8 @@ def draw():
     text('Volgende', width/2, 755)
                 
 def mouseClicked():
+    global gameData, defaultValueBlink, shown, players
     
-    # screens
-    global gameData, defaultValueBlink, shown
-    
-    
-    if(functions.onRect(width/2 - 100, 725, 200, 50)):
-        print('test122345')
-        keyPressed()
-        
-        shown = False
-
     for i in range(len(gameData['blink'])):
         if functions.onRect(300, 200 + (150 * i), 400, 50,):
             gameData['blink'][i] = True
@@ -99,13 +85,11 @@ def mouseClicked():
                 defaultValueBlink = 500
             else:
                 defaultValueBlink = functions.loopThroughBlink(gameData['users'][i])
-            
         else:
             gameData['blink'][i]= False   
             
     for i in range(len(gameData['yPlayer'])):
         if functions.onRect(760,  200+(i*150), imgWidth,imgHeight):
-            print('maak gebruiker aan!')
             if(gameData['users'][i] == ''):
                 gameData['errorMessage2'] = 'Naam mag niet leeg zijn'
                 gameData['yPlayer'][i]= False
@@ -114,19 +98,22 @@ def mouseClicked():
                 gameData['yPlayer'][i]= True
         else:
             gameData['yPlayer'][i]= False
-            
-        
-       
-            
+                    
+    if(functions.onRect(width/2 - 100, 725, 200, 50) and gameData['errorMessage2'] == False):
+        for i in gameData['users']:
+            if(i != '' and i != None):
+                players += 1
+                
+        if(players == int(jsonData[0]['amountOfUsers'])):
+            shown = False
+        else:
+            players = 0
+                    
 def keyPressed():
-    
-    # screens
     global gameData, defaultValueBlink, shown
     
     users = 0
-    
-    
-            
+        
     for i in range(len(gameData['blink'])):
         if gameData['blink'][i]:
             if(len(gameData['users'][i]) >= 0):
@@ -137,18 +124,20 @@ def keyPressed():
             users += 1
             gameData['errorMessage2'] = False
             
-    if(key == ENTER or goToStartPositionScreen):   
+            
+    # or goToStartPositionScreen
+    if(key == ENTER ):   
         if(users == 0):
             gameData['errorMessage2'] = 'Vul eerst het formulier in voordat u op verzenden drukt'
         else:
             gameData['errorMessage2'] = False
-            
-            if(int(gameData['amountOfUsers']) > int(users)):
+
+            if(int(jsonData[0]['amountOfUsers']) > int(users)):
                 gameData['errorMessage2'] = 'U moet meer spelers aanmaken'
             else:
                 gameData['errorMessage2'] = False
         
-                if(int(gameData['amountOfUsers']) < users):
+                if(int(jsonData[0]['amountOfUsers']) < users):
                     gameData['errorMessage2'] = 'U moet minder spelers aanmaken'
                 else:
                     gameData['errorMessage2'] = False
@@ -157,15 +146,6 @@ def keyPressed():
                         gameData['errorMessage2'] = 'kies de jongste speler!'
                     else:
                         gameData['errorMessage2'] = False
-                        
-
-                        
-                       
-                        
+                    
                         if(int(jsonData[0]['amountOfUsers']) == users):
-                            print('yeah')
-                            # shown = False
-            
-                            
-                            
-                            
+                            shown = False                    

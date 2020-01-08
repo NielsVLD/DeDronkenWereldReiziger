@@ -10,7 +10,6 @@ gameData = {}
 gameData['alcoholicCheck'] = False
 gameData['amountOfUsers'] = False
 gameData['errorMessage'] = False
-# gameData['errorMessage2'] = False
 
 # array where all the sended data is included
 sendJsonData = []
@@ -21,8 +20,6 @@ imgWidth=60
 imgHeight=50
 
 shown = True
-
-# goToStartPositionScreen = False
 
 def setup():   
     global imageChecked, imageNotChecked
@@ -76,21 +73,14 @@ def draw():
    
     if(gameData['errorMessage'] != False):     
         text(gameData['errorMessage'], width/2, 500)
-        
                 
 def mouseClicked():
     global gameData, defaultValueBlink, shown, sendJsonData
-    
-    if(functions.onRect(width/2 - 100, 725, 200, 50)):
-        keyPressed()
-        shown = False
             
     if(functions.onRect(660, 620, 50, 50)):
         gameData['alcoholicCheck'] = not gameData['alcoholicCheck']
    
     if(functions.onRect(width/2 - 100, 700, 200, 50) and gameData['amountOfUsers'] != False):
-        
-        shown = False
         
         sendJsonData.append({
             'amountOfUsers': gameData['amountOfUsers'],
@@ -99,7 +89,9 @@ def mouseClicked():
         
         functions.dumpJson('gameData.json', sendJsonData)
         
-  
+        # when the amountOfUsers is correct this page will be showned false
+        shown = False
+        
 def keyPressed():
     global gameData, defaultValueBlink, shown
     
