@@ -14,11 +14,16 @@ gameData = {}
 qanda={}
 userNames = []
 
-def getJson():
-    with open('gameData.txt') as json_file:
-        gameData = json.load(json_file)
+def getJson(fileName):
+    with open(fileName) as json_file:
+        jsondata = json.load(json_file)
         
-    return gameData
+    return jsondata
+
+def dumpJson(fileName, data):
+    
+    with open(fileName, 'w') as outfile:
+        json.dump(data, outfile)
 
 def createRectWithColor(x, y, widthRect, heightRect, choosenColor):
     fill(choosenColor)
@@ -36,11 +41,6 @@ def blink(x1, y1, x2, y2):
     if(millis() - 500 > blinkTime):
         blinkTime = millis()
         blinkOn = not blinkOn
-
-
-def clearPage():
-    background(0)
-    background(51)
     
 def amountOfUsers():
     amountOfUsers = 0
@@ -90,6 +90,7 @@ def loopThroughBlink(InputWord):
     whileInputWord = str(InputWord)
     totalLenghtInputWord = len(whileInputWord)
     
+    # start value of the blink
     x = 500
     
     i = 0
@@ -147,7 +148,6 @@ def pushBlink(InputWord):
                 
     return x    
 
-
 def clearUserInput():
     global userName
     userName = None
@@ -157,14 +157,5 @@ def showImage(imagee, xPosition, yPosition):
     imageMode(CENTER)
     image(imagee, xPosition, yPosition)
     
-    
 def onRect(x, y, width, height):
     return(mouseX >= x and mouseX <= x + width and mouseY >= y and mouseY <= y + height)
-
-
-def getQAndAJson():
-    with open('qanda.json') as json_file:
-        qanda = json.load(json_file)
-        
-    return qanda
-    

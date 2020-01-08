@@ -7,19 +7,15 @@ imageNotChecked = None
 defaultColor = color(37, 107, 133)
 
 gameData = {}
-gameData['alcoholicCheck'] = False
-gameData['amountOfUsers'] = False
-gameData['errorMessage'] = False
+# gameData['alcoholicCheck'] = False
+# gameData['amountOfUsers'] = False
+# gameData['errorMessage'] = False
 gameData['errorMessage2'] = False
 gameData['yPlayer'] = [False, False, False, False]
 gameData['users'] = ['', '', '', '']
 gameData['blink'] = [False, False, False, False]
 
 colorsToChoose = [color(255, 0, 0), color(0, 255, 0),color(0, 0, 255),color(255, 255, 0)]
-
-screens = {}
-screens['secondScreen'] = False
-screens['thirdScreen'] = False
 
 defaultValueBlink = 500
 
@@ -28,10 +24,12 @@ imgHeight=50
 
 shown = True
 
+jsonData = []
+
 goToStartPositionScreen = False
 
 def setup():   
-    global imageChecked, imageNotChecked
+    global imageChecked, imageNotChecked, jsonData
     
     fill(37, 107, 133)
     # size of the project
@@ -44,6 +42,8 @@ def setup():
     imageChecked = loadImage('images/checked.png')
     imageNotChecked = loadImage('images/notchecked.png')
     
+    jsonData = functions.getJson('gameData.json')
+    
 def draw():
     background(51)
     
@@ -52,85 +52,45 @@ def draw():
     # text size and color for the rest of this project
     textSize(20)
     fill(255)
-
-    text("Welkom bij De Dronken Wereld Reiziger \n Met hoeveel spelers wilt u spelen? \n kies uit 2, 3 of 4 spelers", width / 2, 300)
-
-    # a rectangle where the user input is shown
-    functions.createRectWithColor(width/2 - 200, 400, 400, 50, defaultColor)
-    
-    # a rectangle where the user can check if the alchol is allowed or not
-    functions.createRectWithColor(660, 620, 50, 50, defaultColor)
-    
-    functions.createRectWithColor(width/2 - 100, 700, 200, 50, defaultColor)
-    fill(255)
-    text('Volgende', width/2, 730)
-    
-    # showing the default image which is not checked
-    functions.showImage(imageNotChecked, width / 1.46, height / 1.22)
-    
-    fill(255)
-    text('Klik het vakje aan om de drank\n variant te spelen', width/2.1, height/ 1.24)
-    
-    # if alcoholicCheck is true the box will be checked
-    if(gameData['alcoholicCheck']):
-        functions.showImage(imageChecked, width / 1.46, height / 1.22)
         
-    functions.blink(defaultValueBlink, 410, defaultValueBlink, 440)
     
-    if(gameData['amountOfUsers'] != 0):
-        text(gameData['amountOfUsers'], width/2, 430)
-   
-    if(gameData['errorMessage'] != False):     
-        text(gameData['errorMessage'], width/2, 500)
+    
+    text('Kleur', 200, 125)
+    text('Naam', width/2, 125)
+    text('Jongste speler', 790, 125)
+    
+    if(gameData['errorMessage2'] != False):     
+        text(gameData['errorMessage2'], width/2, 170)
+    
+    for i in range(4):
+        functions.createRectWithColor(300, 200 + (150 * i), 400, 50, defaultColor)
+        if(gameData['blink'][i] != False):
+            functions.blink(defaultValueBlink, 210 + (150* i), defaultValueBlink, 240 + (150 * i))
         
-    if(screens['secondScreen']):
-        functions.clearPage()
-        
-        functions.createRectWithColor(width/2 - 100, 725, 200, 50, defaultColor)
-        text('Volgende', width/2, 755)
-        
-        text('Kleur', 200, 125)
-        text('Naam', width/2, 125)
-        text('Jongste speler', 790, 125)
-        
-        if(gameData['errorMessage2'] != False):     
-            text(gameData['errorMessage2'], width/2, 170)
-        
-        for i in range(4):
-            functions.createRectWithColor(300, 200 + (150 * i), 400, 50, defaultColor)
-            if(gameData['blink'][i] != False):
-                functions.blink(defaultValueBlink, 210 + (150* i), defaultValueBlink, 240 + (150 * i))
+        text(str(gameData['users'][i]), width/2, 230+(i*150))
+        functions.createRectWithColor(180, 200+(i*150), 50, 50, colorsToChoose[i])
+        if gameData['yPlayer'][i]:
+            functions.showImage(imageChecked, 760+(60/2), 200+(50/2)+(i*150))
+        else:
+            functions.showImage(imageNotChecked, 761+(60/2), 200+(50/2)+(i*150))
             
-            text(str(gameData['users'][i]), width/2, 230+(i*150))
-            functions.createRectWithColor(180, 200+(i*150), 50, 50, colorsToChoose[i])
-            if gameData['yPlayer'][i]:
-                functions.showImage(imageChecked, 760+(60/2), 200+(50/2)+(i*150))
-            else:
-                functions.showImage(imageNotChecked, 761+(60/2), 200+(50/2)+(i*150))
+    functions.createRectWithColor(width/2 - 100, 725, 200, 50, defaultColor)
+    text('Volgende', width/2, 755)
                 
 def mouseClicked():
-    global gameData, defaultValueBlink, screens, shown, goToStartPositionScreen
+    
+    # screens
+    global gameData, defaultValueBlink, shown
+    
     
     if(functions.onRect(width/2 - 100, 725, 200, 50)):
-        goToStartPositionScreen = True
+        print('test122345')
         keyPressed()
-        if(data['errorMessage2']):
-            shown = False
-    else:
-        test = False
-    
-    createAmountOfUsers = functions.onRect(width/2 - 100, 700, 200, 50)
-    
-    if(createAmountOfUsers and gameData['amountOfUsers'] != False):
-        screens['secondScreen'] = True
-    
-    alcoholicVariant = functions.onRect(660, 620, 50, 50)
         
-    if(alcoholicVariant):
-        gameData['alcoholicCheck'] = not gameData['alcoholicCheck']
-        
+        shown = False
+
     for i in range(len(gameData['blink'])):
-        if functions.onRect(300, 200 + (150 * i), 400, 50,) and screens['secondScreen'] and test == False:
+        if functions.onRect(300, 200 + (150 * i), 400, 50,):
             gameData['blink'][i] = True
             
             functions.clearUserInput()
@@ -144,8 +104,8 @@ def mouseClicked():
             gameData['blink'][i]= False   
             
     for i in range(len(gameData['yPlayer'])):
-        if functions.onRect(760,  200+(i*150), imgWidth,imgHeight) and screens['secondScreen']:
-            
+        if functions.onRect(760,  200+(i*150), imgWidth,imgHeight):
+            print('maak gebruiker aan!')
             if(gameData['users'][i] == ''):
                 gameData['errorMessage2'] = 'Naam mag niet leeg zijn'
                 gameData['yPlayer'][i]= False
@@ -160,26 +120,12 @@ def mouseClicked():
             
 def keyPressed():
     
-
-    global gameData, defaultValueBlink, shown, screens
+    # screens
+    global gameData, defaultValueBlink, shown
     
     users = 0
     
-    if(key != ENTER and screens['secondScreen'] == False):
-        
-        gameData['amountOfUsers'] = functions.amountOfUsers()
-        defaultValueBlink = functions.PositionBlink(gameData['amountOfUsers'], 1)
-        
-        if(gameData['amountOfUsers'] == 0):
-            gameData['errorMessage'] = 'Dit is geen 2, 3 of 4'
-        else:
-            gameData['errorMessage'] = False
-            
-    if(key == ENTER and gameData['amountOfUsers'] == False):
-        gameData['errorMessage'] = 'Vul iets in voordat u doorgaat naar de volgende pagina' 
-    else:
-        if(key == ENTER and gameData['errorMessage'] == False):
-            screens['secondScreen'] = True
+    
             
     for i in range(len(gameData['blink'])):
         if gameData['blink'][i]:
@@ -191,7 +137,7 @@ def keyPressed():
             users += 1
             gameData['errorMessage2'] = False
             
-    if(key == ENTER and screens['secondScreen'] or goToStartPositionScreen):   
+    if(key == ENTER or goToStartPositionScreen):   
         if(users == 0):
             gameData['errorMessage2'] = 'Vul eerst het formulier in voordat u op verzenden drukt'
         else:
@@ -211,11 +157,15 @@ def keyPressed():
                         gameData['errorMessage2'] = 'kies de jongste speler!'
                     else:
                         gameData['errorMessage2'] = False
-        
-                        if(int(gameData['amountOfUsers']) == users):
-                            screens['thirdScreen'] = True
-                            shown = False
-                            print(shown)
+                        
+
+                        
+                       
+                        
+                        if(int(jsonData[0]['amountOfUsers']) == users):
+                            print('yeah')
+                            # shown = False
+            
                             
                             
                             
