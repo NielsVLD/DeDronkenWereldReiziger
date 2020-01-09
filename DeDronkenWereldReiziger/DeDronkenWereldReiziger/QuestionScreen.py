@@ -1,3 +1,4 @@
+# Niels Krommenhoek, 0982940, projectgroep 3
 # variables 
 ingevuldAntwoord = "Geen"
 touched = False
