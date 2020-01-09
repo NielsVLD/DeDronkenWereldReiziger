@@ -10,8 +10,8 @@ vraag ="test"
 def setup():
     global img,img1,ingevuldAntwoord
     size(1000,800)
-    img = loadImage('checked.png')
-    img1 = loadImage('notchecked.png')
+    img = loadImage('images/checked.png')
+    img1 = loadImage('images/notchecked.png')
     ingevuldAntwoord='Geen'
 
 def draw():

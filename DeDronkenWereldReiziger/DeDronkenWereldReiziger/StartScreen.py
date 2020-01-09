@@ -17,9 +17,9 @@ test=None
 def setup():
     global mapBackground,randomPointX,randomPointY,zoomIn,title,subtitle,button,eventAllowed
     size(1000,800)
-    mapBackground = loadImage("map.png")
-    title = loadImage("title.png")
-    button = loadImage("button.png")
+    mapBackground = loadImage("images/map.png")
+    title = loadImage("images/title.png")
+    button = loadImage("images/button.png")
     randomPointX = getRandomXPointOnMap()
     randomPointY = getRandomYPointOnMap()
     eventAllowed=True

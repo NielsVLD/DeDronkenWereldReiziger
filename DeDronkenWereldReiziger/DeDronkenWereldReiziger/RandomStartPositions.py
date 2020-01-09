@@ -15,12 +15,12 @@ def setup():
     eventAllowed=True
     size(1000,800)
     calculateStartPositions()
-    images[allStartPositions[1]]=loadImage("EUrope.png")
-    images[allStartPositions[3]]=loadImage("NAmerica.png")
-    images[allStartPositions[4]]=loadImage("ZAmerica.png")
-    images[allStartPositions[5]]=loadImage("Afrika.png")
-    images[allStartPositions[2]]=loadImage("Azie.png")
-    images[allStartPositions[0]]=loadImage("Oceanie.png")
+    images[allStartPositions[1]]=loadImage("images/EUrope.png")
+    images[allStartPositions[3]]=loadImage("images/NAmerica.png")
+    images[allStartPositions[4]]=loadImage("images/ZAmerica.png")
+    images[allStartPositions[5]]=loadImage("images/Afrika.png")
+    images[allStartPositions[2]]=loadImage("images/Azie.png")
+    images[allStartPositions[0]]=loadImage("images/Oceanie.png")
     
 def draw():
     background(51)

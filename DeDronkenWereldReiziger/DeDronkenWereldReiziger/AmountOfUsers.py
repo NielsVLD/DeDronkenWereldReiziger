@@ -74,7 +74,7 @@ def draw():
     if(gameData['errorMessage'] != False):     
         text(gameData['errorMessage'], width/2, 500)
                 
-def mouseClicked():
+def mousePressed():
     global gameData, defaultValueBlink, shown, sendJsonData
             
     if(functions.onRect(660, 620, 50, 50)):
